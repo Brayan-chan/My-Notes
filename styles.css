@@ -1,0 +1,27 @@
+ .note {
+     border: 2px solid #ccc;
+     padding: 10px;
+     margin: 10px;
+     background-color: #f9f9f9;
+ }
+
+ /* Estilos CSS para el formateo de texto */
+ .bold {
+     font-weight: bold;
+ }
+
+ .italic {
+     font-style: italic;
+ }
+
+ ul,
+ ol {
+     margin-left: 20px;
+ }
+
+ #note-content-div {
+     border: 1px solid #ccc;
+     padding: 10px;
+     min-height: 100px;
+     /* Establece una altura mínima deseada */
+ }

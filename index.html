@@ -1,0 +1,51 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>My Notes</h1>
+
+    <!-- Formulario para crear nuevas notas -->
+    <div id="editor">
+        <h2>Editor de Notas</h2>
+        <label for="note-title">Título:</label>
+        <input type="text" id="note-title" placeholder="Título">
+        <br>
+        <!-- Botones de formateo de texto -->
+        <button onclick="applyFormat('bold')">Negrita</button>
+        <button onclick="applyFormat('italic')">Cursiva</button>
+        <label for="image-upload" id="image-upload-label">
+            <button onclick="addImage()">Agregar Imagen</button>
+        </label>
+        <input type="file" id="image-upload" accept="image/*" style="display: none;">
+
+        <br>
+        <label for="note-content">Contenido:</label>
+        <div id="note-content-div" contenteditable="true" oninput="updatePreview()"></div>
+        <br>
+        <button onclick="createNote()">Crear Nota</button>
+    </div>
+
+    <!-- Vista previa de la nota -->
+    <div id="note-preview">
+        <h2>Vista Previa de la Nota</h2>
+        <h3 id="preview-title"></h3>
+        <div id="preview-content"></div>
+    </div>
+
+    <!-- Área para mostrar las notas existentes -->
+    <div id="notes-container">
+        <!-- Las notas se mostrarán aquí -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
