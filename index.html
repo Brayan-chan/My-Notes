@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>My Notes </h1>
+    <h1>My Notes</h1>
 
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
@@ -18,13 +18,38 @@
         <label for="note-title">Título:</label>
         <input type="text" id="note-title" placeholder="Título">
         <br>
-        <!-- Botones de formateo de texto -->
+
+        <!-- Botones de formato de texto -->
         <button onclick="applyFormat('bold')">Negrita</button>
         <button onclick="applyFormat('italic')">Cursiva</button>
+        <button onclick="applyFormat('underline')">Subrayado</button>
+        <button onclick="applyFormat('strikethrough')">Tachado</button>
+        <button onclick="applyForeColor()">Color de texto</button>
+        <button onclick="applyBackColor()">Color de fondo</button>
+        <button onclick="applyFontSize()">Tamaño de fuente</button>
+
+        <!-- Botones de alineación -->
+        <button onclick="applyAlign('justifyLeft')">Alinear a la izquierda</button>
+        <button onclick="applyAlign('justifyCenter')">Centrar</button>
+        <button onclick="applyAlign('justifyRight')">Alinear a la derecha</button>
+
+        <!-- Botones de listas -->
+        <button onclick="applyList('insertUnorderedList')">Viñetas</button>
+        <button onclick="applyList('insertOrderedList')">Lista numerada</button>
+
+        <!-- Botones de hipervínculos -->
+        <button onclick="addLink()">Hipervínculo</button>
         <label for="image-upload" id="image-upload-label">
             <button onclick="addImage()">Agregar Imagen</button>
         </label>
         <input type="file" id="image-upload" accept="image/*" style="display: none;">
+
+        <!-- Botones de control de imagen -->
+        <div id="image-controls">
+            <button onclick="centerImage()">Centrar Imagen</button>
+            <button onclick="moveImage()">Mover Imagen</button>
+            <button onclick="resizeImage()">Redimensionar Imagen</button>
+        </div>
 
         <br>
         <label for="note-content">Contenido:</label>

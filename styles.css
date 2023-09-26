@@ -25,3 +25,7 @@
      min-height: 100px;
      /* Establece una altura mínima deseada */
  }
+
+ img {
+     position: relative;
+ }

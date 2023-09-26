@@ -1,9 +1,46 @@
 // script.js
+let selectedImage; // Variable para almacenar la imagen seleccionada
+
 function applyFormat(style) {
     document.execCommand(style, false, null);
 }
 
-// script.js
+function applyForeColor() {
+    const color = prompt('Ingresa el color de texto (nombre o código hexadecimal):');
+    if (color) {
+        document.execCommand('foreColor', false, color);
+    }
+}
+
+function applyBackColor() {
+    const color = prompt('Ingresa el color de fondo (nombre o código hexadecimal):');
+    if (color) {
+        document.execCommand('backColor', false, color);
+    }
+}
+
+function applyFontSize() {
+    const size = prompt('Ingresa el tamaño de fuente (1-7):');
+    if (size && /^[1-7]$/.test(size)) {
+        document.execCommand('fontSize', false, size);
+    }
+}
+
+function applyAlign(align) {
+    document.execCommand(align, false, null);
+}
+
+function applyList(listType) {
+    document.execCommand(listType, false, null);
+}
+
+function addLink() {
+    const url = prompt('Ingresa la URL del hipervínculo:');
+    if (url) {
+        document.execCommand('createLink', false, url);
+    }
+}
+
 function addImage() {
     const fileInput = document.getElementById('image-upload');
     fileInput.click();
@@ -20,6 +57,11 @@ function addImage() {
 
                 // Inserta la imagen en el contenido actual
                 const contentDiv = document.getElementById('note-content-div');
+
+                img.addEventListener('click', function () {
+                    // Al hacer clic en la imagen, la seleccionamos
+                    selectedImage = this;
+                });
 
                 // Verifica si ya hay una imagen en el contenido
                 const existingImage = contentDiv.querySelector('img');
@@ -39,14 +81,87 @@ function addImage() {
     });
 }
 
+// Función para centrar la imagen seleccionada
+function centerImage() {
+    if (selectedImage) {
+        const containerWidth = document.getElementById('note-content-div').offsetWidth;
+        const containerHeight = document.getElementById('note-content-div').offsetHeight;
+        const imageWidth = selectedImage.offsetWidth;
+        const imageHeight = selectedImage.offsetHeight;
 
-// Función para crear una nueva nota
+        // Calcula la posición para centrar la imagen sin rebasar los bordes
+        const centerX = (containerWidth - imageWidth) / 2;
+        const centerY = (containerHeight - imageHeight) / 2;
+
+        // Aplica la posición centrada
+        selectedImage.style.left = `${centerX}px`;
+        selectedImage.style.top = `${centerY}px`;
+    }
+}
+
+// Función para mover la imagen seleccionada
+function moveImage() {
+    if (selectedImage) {
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        selectedImage.style.cursor = 'move';
+
+        selectedImage.addEventListener('mousedown', function (event) {
+            isDragging = true;
+            offsetX = event.clientX - selectedImage.getBoundingClientRect().left;
+            offsetY = event.clientY - selectedImage.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                const x = event.clientX - offsetX;
+                const y = event.clientY - offsetY;
+
+                selectedImage.style.left = `${x}px`;
+                selectedImage.style.top = `${y}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
+    }
+}
+
+function resizeImage() {
+    if (selectedImage) {
+        selectedImage.style.cursor = 'nwse-resize';
+
+        selectedImage.addEventListener('mousedown', function (event) {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+            const startWidth = parseInt(getComputedStyle(selectedImage).width, 10);
+            const startHeight = parseInt(getComputedStyle(selectedImage).height, 10);
+
+            document.addEventListener('mousemove', resize);
+
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', resize);
+            });
+
+            function resize(event) {
+                const newWidth = startWidth + event.clientX - startX;
+                const newHeight = startHeight + event.clientY - startY;
+
+                selectedImage.style.width = `${newWidth}px`;
+                selectedImage.style.height = `${newHeight}px`;
+            }
+        });
+    }
+}
+
 function createNote() {
     const title = document.getElementById('note-title').value;
     const contentDiv = document.getElementById('note-content-div');
 
     if (title || contentDiv.innerHTML.trim() !== '') {
-        // Crea un elemento de nota y muestra el título y contenido
         const noteElement = document.createElement('div');
         noteElement.classList.add('note');
         noteElement.innerHTML = `
@@ -57,7 +172,6 @@ function createNote() {
         const notesContainer = document.getElementById('notes-container');
         notesContainer.appendChild(noteElement);
 
-        // Limpia el formulario y la vista previa
         document.getElementById('note-title').value = '';
         contentDiv.innerHTML = '';
         document.getElementById('preview-title').textContent = '';
