@@ -19,38 +19,61 @@
         <h2>Editor de Notas</h2>
         <label for="note-title">Título:</label>
         <input type="text" id="note-title" placeholder="Título">
-        <br>
+        <br><br>
 
-        <!-- Botones de formato de texto -->
-        <button onclick="applyFormat('bold')"><i class="fas fa-bold"></i></button>
-        <button onclick="applyFormat('italic')"><i class="fas fa-italic"></i></button>
-        <button onclick="applyFormat('underline')"><i class="fas fa-underline"></i></button>
-        <button onclick="applyFormat('strikethrough')"><i class="fas fa-strikethrough"></i></button>
-        <button onclick="applyForeColor()">Color de texto</button>
-        <button onclick="applyBackColor()">Color de fondo</button>
-        <button onclick="applyFontSize()">Tamaño de fuente</button>
-
-        <!-- Botones de alineación -->
-        <button onclick="applyAlign('justifyLeft')">Alinear a la izquierda</button>
-        <button onclick="applyAlign('justifyCenter')">Centrar</button>
-        <button onclick="applyAlign('justifyRight')">Alinear a la derecha</button>
-
-        <!-- Botones de listas -->
-        <button onclick="applyList('insertUnorderedList')">Viñetas</button>
-        <button onclick="applyList('insertOrderedList')">Lista numerada</button>
-
-        <!-- Botones de hipervínculos -->
-        <button onclick="addLink()">Hipervínculo</button>
-        <label for="image-upload" id="image-upload-label">
-            <button onclick="addImage()">Agregar Imagen</button>
-        </label>
-        <input type="file" id="image-upload" accept="image/*" style="display: none;">
-
-        <!-- Botones de control de imagen -->
-        <div id="image-controls">
-            <button onclick="centerImage()">Centrar Imagen</button>
-            <button onclick="moveImage()">Mover Imagen</button>
-            <button onclick="resizeImage()">Redimensionar Imagen</button>
+        <div class="button-container">
+            <!-- Botones de formato de texto -->
+            <button onclick="applyFormat('bold')"><i class="fas fa-bold"></i></button>
+            <button onclick="applyFormat('italic')"><i class="fas fa-italic"></i></button>
+            <button onclick="applyFormat('underline')"><i class="fas fa-underline"></i></button>
+            <button onclick="applyFormat('strikethrough')"><i class="fas fa-strikethrough"></i></button>
+            <!-- Botones de color de texto, color de fondo y tamaño de fuente -->
+            <button onclick="applyForeColor()"><i class="fas fa-font"></i></button>
+            <button onclick="applyBackColor()"><i class="fas fa-highlighter"></i></button>
+            <button onclick="applyFontSize()"><i class="fas fa-text-height"></i></button>
+            
+            
+            <!-- Botones de alineación -->
+            <button onclick="applyAlign('justifyLeft')">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <button onclick="applyAlign('justifyCenter')">
+                <i class="fas fa-align-center"></i>
+            </button>
+            <button onclick="applyAlign('justifyRight')">
+                <i class="fas fa-align-right"></i>
+            </button>
+            
+            <!-- Botones de listas -->
+            <button onclick="applyList('insertUnorderedList')">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <button onclick="applyList('insertOrderedList')">
+                <i class="fas fa-list-ol"></i>
+            </button>
+            
+            <!-- Botones de hipervínculos -->
+            <button onclick="addLink()">
+                <i class="fas fa-link"></i>
+            </button>
+            <label for="image-upload" id="image-upload-label">
+                <button onclick="addImage()"><i class="fas fa-image"></i>
+                </button>
+            </label>
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            
+            <!-- Botones de control de imagen -->
+            <div id="image-controls">
+                <button onclick="centerImage()">
+                    <i class="fas fa-align-center"></i> Centrar Imagen
+                </button>
+                <button onclick="moveImage()">
+                    <i class="fas fa-arrows-alt"></i> Mover Imagen
+                </button>
+                <button onclick="resizeImage()">
+                    <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
+                </button>
+            </div>
         </div>
 
         <br>

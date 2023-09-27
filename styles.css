@@ -20,12 +20,17 @@
  }
 
  #note-content-div {
-     border: 1px solid #ccc;
+     border: 2px solid #ccc;
      padding: 10px;
      min-height: 100px;
-     /* Establece una altura mínima deseada */
  }
 
- img {
-     position: relative;
+ .button-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .button-container button {
+     margin-right: 4px;
  }
