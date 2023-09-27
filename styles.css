@@ -34,3 +34,54 @@
  .button-container button {
      margin-right: 4px;
  }
+
+ img {
+    position: relative;
+ }
+
+ /* Estilo de las manijas de redimensionamiento */
+ .resizable {
+     position: relative;
+     cursor: move;
+ }
+
+ .resizable::before,
+ .resizable::after {
+     content: "";
+     position: absolute;
+     width: 8px;
+     height: 8px;
+     background-color: blue;
+ }
+
+ .resizable::before {
+     top: -4px;
+     left: -4px;
+     cursor: nwse-resize;
+     /* Manija superior izquierda */
+ }
+
+ .resizable::after {
+     bottom: -4px;
+     right: -4px;
+     cursor: nwse-resize;
+     /* Manija inferior derecha */
+ }
+
+ /* Estilos para los puntos de manipulación */
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    position: absolute;
+    cursor: pointer;
+}
+
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; }
+.bottom-left { bottom: 0; left: 0; }
+.bottom-right { bottom: 0; right: 0; }
+.top-center { top: 0; left: 50%; transform: translateX(-50%); }
+.middle-left { top: 50%; left: 0; transform: translateY(-50%); }
+.middle-right { top: 50%; right: 0; transform: translateY(-50%); }
+.bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); }

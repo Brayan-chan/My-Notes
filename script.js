@@ -1,5 +1,4 @@
 // script.js
-let selectedImage; // Variable para almacenar la imagen seleccionada
 
 function applyFormat(style) {
     document.execCommand(style, false, null);
@@ -41,6 +40,9 @@ function addLink() {
     }
 }
 
+let selectedImage; // Variable para almacenar la imagen seleccionada
+let imageContainer = document.getElementById('image-container'); 
+
 function addImage() {
     const fileInput = document.getElementById('image-upload');
     fileInput.click();
@@ -81,7 +83,65 @@ function addImage() {
     });
 }
 
-// Función para centrar la imagen seleccionada
+function selectImage() {
+    const images = document.querySelectorAll('#note-content-div img');
+    images.forEach(img => {
+        img.style.border = '2px solid transparent'; // Restablecer bordes en todas las imágenes
+    });
+
+    // Agregar evento click para seleccionar una imagen
+    images.forEach(img => {
+        img.addEventListener('click', function () {
+            selectedImage = this;
+            this.style.border = '2px dashed blue'; // Establecer un borde punteado en la imagen seleccionada
+        });
+    });
+}
+
+function deselectImage() {
+    if (selectedImage) {
+        selectedImage.style.border = '2px solid transparent'; // Restablecer el borde de la imagen seleccionada
+        selectedImage = null;
+    }
+}
+
+function moveImage() {
+    if (selectedImage) {
+        let isDragging = false;
+        let offsetX, offsetY;
+        let originalPosition = null;
+
+        selectedImage.style.cursor = 'move';
+
+        selectedImage.addEventListener('mousedown', function (event) {
+            isDragging = true;
+            offsetX = event.clientX - selectedImage.getBoundingClientRect().left;
+            offsetY = event.clientY - selectedImage.getBoundingClientRect().top;
+            originalPosition = selectedImage.style.position;
+
+            // Cambia la posición a relativa para mover la imagen libremente
+            selectedImage.style.position = 'relative';
+        });
+
+        document.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                const x = event.clientX - offsetX;
+                const y = event.clientY - offsetY;
+
+                selectedImage.style.left = `${x}px`;
+                selectedImage.style.top = `${y}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+
+            // Restaura la posición original (absoluta) de la imagen
+            selectedImage.style.position = originalPosition;
+        });
+    }
+}
+
 function centerImage() {
     if (selectedImage) {
         const containerWidth = document.getElementById('note-content-div').offsetWidth;
@@ -99,63 +159,55 @@ function centerImage() {
     }
 }
 
-// Función para mover la imagen seleccionada
-function moveImage() {
-    if (selectedImage) {
-        let isDragging = false;
-        let offsetX, offsetY;
-
-        selectedImage.style.cursor = 'move';
-
-        selectedImage.addEventListener('mousedown', function (event) {
-            isDragging = true;
-            offsetX = event.clientX - selectedImage.getBoundingClientRect().left;
-            offsetY = event.clientY - selectedImage.getBoundingClientRect().top;
-        });
-
-        document.addEventListener('mousemove', function (event) {
-            if (isDragging) {
-                const x = event.clientX - offsetX;
-                const y = event.clientY - offsetY;
-
-                selectedImage.style.left = `${x}px`;
-                selectedImage.style.top = `${y}px`;
-            }
-        });
-
-        document.addEventListener('mouseup', function () {
-            isDragging = false;
-        });
-    }
-}
+let isResizing = false; // Variable de control para el redimensionamiento
 
 function resizeImage() {
     if (selectedImage) {
-        selectedImage.style.cursor = 'nwse-resize';
+        if (isResizing) {
+            // Si ya se está redimensionando, desactivar el redimensionamiento
+            isResizing = false;
+            selectedImage.style.cursor = 'default'; // Restablecer el cursor
+        } else {
+            // Si no se está redimensionando, activar el redimensionamiento
+            isResizing = true;
+            selectedImage.style.cursor = 'nwse-resize';
 
-        selectedImage.addEventListener('mousedown', function (event) {
-            event.preventDefault();
-            const startX = event.clientX;
-            const startY = event.clientY;
-            const startWidth = parseInt(getComputedStyle(selectedImage).width, 10);
-            const startHeight = parseInt(getComputedStyle(selectedImage).height, 10);
+            let startX, startY, startWidth, startHeight;
 
-            document.addEventListener('mousemove', resize);
+            selectedImage.addEventListener('mousedown', startResize);
 
             document.addEventListener('mouseup', function () {
                 document.removeEventListener('mousemove', resize);
+                selectedImage.removeEventListener('mousedown', startResize);
             });
 
+            function startResize(event) {
+                startX = event.clientX;
+                startY = event.clientY;
+                startWidth = parseInt(getComputedStyle(selectedImage).width, 10);
+                startHeight = parseInt(getComputedStyle(selectedImage).height, 10);
+
+                document.addEventListener('mousemove', resize);
+            }
+
             function resize(event) {
+                if (!isResizing) {
+                    // Si se desactiva el redimensionamiento durante el movimiento del ratón, salir
+                    document.removeEventListener('mousemove', resize);
+                    return;
+                }
+
                 const newWidth = startWidth + event.clientX - startX;
                 const newHeight = startHeight + event.clientY - startY;
 
                 selectedImage.style.width = `${newWidth}px`;
                 selectedImage.style.height = `${newHeight}px`;
             }
-        });
+        }
     }
 }
+
+
 
 function createNote() {
     const title = document.getElementById('note-title').value;
@@ -191,7 +243,6 @@ function updatePreview() {
     previewTitle.textContent = title;
     previewContent.innerHTML = contentDiv.innerHTML;
 }
-
 
 
 

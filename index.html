@@ -56,30 +56,29 @@
             <button onclick="addLink()">
                 <i class="fas fa-link"></i>
             </button>
-            <label for="image-upload" id="image-upload-label">
-                <button onclick="addImage()"><i class="fas fa-image"></i>
-                </button>
-            </label>
-            <input type="file" id="image-upload" accept="image/*" style="display: none;">
         </div>
-
         <!-- Botones de control de imagen -->
         <div id="image-controls">
-            <button onclick="centerImage()">
-                <i class="fas fa-align-center"></i> Centrar Imagen
+        <label for="image-upload" id="image-upload-label">
+            <button onclick="addImage()"><i class="fas fa-image"></i>
             </button>
-            <button onclick="moveImage()">
-                <i class="fas fa-arrows-alt"></i> Mover Imagen
-            </button>
-            <button onclick="resizeImage()">
-                <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
-            </button>
+        </label>
+        <input type="file" id="image-upload" accept="image/*" style="display: none;">
+        <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar Imagen</button>
+        <button onclick="centerImages()">
+            <i class="fas fa-align-center"></i> Centrar Imagen
+        </button>
+        <button onclick="moveImage()">
+            <i class="fas fa-arrows-alt"></i> Mover Imagen
+        </button>
+        <button onclick="resizeImage()">
+            <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
+        </button>
         </div>
 
         <br>
         <label for="note-content">Contenido:</label>
         <div id="note-content-div" contenteditable="true" oninput="updatePreview()"></div>
-        <br>
         <button onclick="createNote()">Crear Nota</button>
     </div>
 
