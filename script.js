@@ -1,5 +1,22 @@
 // script.js
 
+function changeFont() {
+    const fontFamilySelect = document.getElementById('font-family');
+    const selectedFont = fontFamilySelect.value;
+    document.execCommand('fontName', false, selectedFont);
+}
+
+// ... Otras funciones ...
+
+// Función para aplicar formato de fuente al contenido seleccionado
+function applyFontFamily() {
+    const fontFamily = prompt('Ingresa el nombre de la fuente (por ejemplo, Arial):');
+    if (fontFamily) {
+        document.execCommand('fontName', false, fontFamily);
+    }
+}
+
+
 function applyFormat(style) {
     document.execCommand(style, false, null);
 }
