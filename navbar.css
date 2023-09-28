@@ -146,11 +146,11 @@
     }
 
     .menu h1{
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        max-height: 30px;
+        line-height: 0;
+        margin: 0 20px;
+        max-height: 40px;
+        max-width: 100px;
+        flex-shrink: 0;
     }
     #menu ul {
         background: #111;
