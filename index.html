@@ -11,8 +11,8 @@
     <script src="navbar.js"></script>
     <link rel="stylesheet" href="navbar.css">
 </head>
-    <nav class="menu.container" id='menu'>
-        <h1 class="menu-logo">My Notes</h1> <!-- Mover el título a la izquierda -->
+<header>
+    <nav id='menu'>
         <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
         <ul>
             <li><a href='http://'>Home</a></li>
@@ -34,14 +34,7 @@
             </li>
             <li><a href='http://'>Contact Us</a></li>
         </ul>
-
     </nav>
-<header>
-        <nav class="menu-container">
-            
-
-            </div>
-        </nav>
 </header>
 <body>
     
@@ -57,6 +50,7 @@
 
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
+        <h1>My Notes</h1>
         <h2>Editor de Notas</h2>
         <label for="note-title">Título:</label>
         <input type="text" id="note-title" placeholder="Título">

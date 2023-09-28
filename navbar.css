@@ -1,37 +1,10 @@
 #menu {
-    overflow: hidden;
-    margin: 0;
     background: #232323;
     color: #FFF;
-    height: 45px;
-    padding: 0 18px; /* Agregar padding a los lados para espacio alrededor del título */
-    border-radius: 0px;
-    display: flex; /* Usar flexbox para alinear elementos horizontalmente */
-    align-items: center; /* Alinear elementos verticalmente al centro */
-    justify-content: space-between; /* Espacio entre elementos */
+    height: 33px;
+    padding-left: 18px;
+    border-radius: 10px;
 }
-
-.menu-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    background: #232323;
-    color: #cdcdcd;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
-    box-sizing: border-box;
-}
-
-#menu h1 {
-    line-height: 0;
-    margin: 0 20px;
-    max-height: 40px;
-    max-width: 100px;
-    flex-shrink: 0;
-}
-
 
 #menu ul,
 #menu li {
@@ -52,7 +25,7 @@
 
 #menu a {
     display: block;
-    line-height: 45px;
+    line-height: 33px;
     padding: 0 14px;
     text-decoration: none;
     color: #FFFFFF;
@@ -65,7 +38,7 @@
 }
 
 #menu li a:hover {
-    color: #001AFF;
+    color: #0099CC;
     background: #F2F2F2;
 }
 
@@ -73,7 +46,7 @@
     display: none;
     margin: 0;
     padding: 0;
-    height: 45px;
+    height: 33px;
     width: 100%;
     opacity: 0;
     cursor: pointer
@@ -81,7 +54,7 @@
 
 #menu label {
     display: none;
-    line-height: 45px;
+    line-height: 33px;
     text-align: center;
     position: absolute;
     left: 35px
@@ -111,7 +84,6 @@
 #menu ul.sub-menus a {
     color: #FFFFFF;
     font-size: 16px;
-    text-transform: capitalize;
 }
 
 #menu li:hover ul.sub-menus {
@@ -124,34 +96,10 @@
 }
 
 @media screen and (max-width: 800px) {
-    .menu {
-            position: absolute;
-            box-sizing: border-box;
-            width: 300px;
-            right: -300px;
-            top: 0;
-            margin: -20px;
-            padding: 75px 50px 50px;
-            background: #cdcdcd;
-            -webkit-font-smoothing: antialiased;
-            /* to stop flickering of text in safari */
-            transform-origin: 0% 0%;
-            transform: translateX(0%);
-            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-        }
-    
-    .menu-container {
-        flex-direction: column;
-        align-items: flex-end;
+    #menu {
+        position: relative
     }
 
-    .menu h1{
-        line-height: 0;
-        margin: 0 20px;
-        max-height: 40px;
-        max-width: 100px;
-        flex-shrink: 0;
-    }
     #menu ul {
         background: #111;
         position: absolute;
