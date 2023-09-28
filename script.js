@@ -307,27 +307,11 @@ function moveImageMobile() {
     }
 }
 
-// Función para redimensionar imágenes en dispositivos móviles
 function resizeImageMobile() {
     if (selectedImage) {
         let isResizing = false;
         let originalWidth, originalHeight;
-
-        const resizeHandles = document.createElement('div');
-        resizeHandles.className = 'resize-handles';
-        selectedImage.appendChild(resizeHandles);
-
-        const resizeHandleNW = document.createElement('div');
-        resizeHandleNW.className = 'resize-handle';
-        resizeHandleNW.style.left = '0';
-        resizeHandleNW.style.top = '0';
-        resizeHandles.appendChild(resizeHandleNW);
-
-        const resizeHandleSE = document.createElement('div');
-        resizeHandleSE.className = 'resize-handle';
-        resizeHandleSE.style.right = '0';
-        resizeHandleSE.style.bottom = '0';
-        resizeHandles.appendChild(resizeHandleSE);
+        let startX, startY;
 
         selectedImage.style.cursor = 'nwse-resize';
 
@@ -335,25 +319,13 @@ function resizeImageMobile() {
             isResizing = true;
             originalWidth = selectedImage.offsetWidth;
             originalHeight = selectedImage.offsetHeight;
-
-            const startX = event.touches[0].clientX;
-            const startY = event.touches[0].clientY;
-
-            document.addEventListener('touchmove', resize);
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
 
             event.preventDefault();
         });
 
-        document.addEventListener('touchend', function () {
-            if (isResizing) {
-                isResizing = false;
-                selectedImage.style.cursor = 'move';
-                document.removeEventListener('touchmove', resize);
-                resizeHandles.style.display = 'none';
-            }
-        });
-
-        function resize(event) {
+        document.addEventListener('touchmove', function (event) {
             if (isResizing) {
                 const newWidth = originalWidth + event.touches[0].clientX - startX;
                 const newHeight = originalHeight + event.touches[0].clientY - startY;
@@ -361,73 +333,14 @@ function resizeImageMobile() {
                 selectedImage.style.width = `${newWidth}px`;
                 selectedImage.style.height = `${newHeight}px`;
 
-                // Actualiza las manijas de redimensionamiento
-                resizeHandles.style.display = 'block';
-                resizeHandleSE.style.display = 'block';
-                resizeHandleNW.style.display = 'block';
+                // Actualiza las manijas de redimensionamiento si es necesario
+                // (agrega esta parte si tienes manijas de redimensionamiento en dispositivos móviles)
             }
-        }
-    }
-}
+        });
 
-// Función para redimensionar imágenes mediante las esquinas
-function enableCornerResize() {
-    if (selectedImage) {
-        const resizeHandles = document.createElement('div');
-        resizeHandles.className = 'resize-handles';
-        selectedImage.appendChild(resizeHandles);
-
-        const resizeHandleNW = document.createElement('div');
-        resizeHandleNW.className = 'resize-handle';
-        resizeHandleNW.style.left = '0';
-        resizeHandleNW.style.top = '0';
-        resizeHandles.appendChild(resizeHandleNW);
-
-        const resizeHandleSE = document.createElement('div');
-        resizeHandleSE.className = 'resize-handle';
-        resizeHandleSE.style.right = '0';
-        resizeHandleSE.style.bottom = '0';
-        resizeHandles.appendChild(resizeHandleSE);
-
-        selectedImage.style.cursor = 'nwse-resize';
-
-        let isResizing = false;
-        let originalWidth, originalHeight;
-        let startX, startY;
-
-        resizeHandleNW.addEventListener('mousedown', startResize);
-        resizeHandleSE.addEventListener('mousedown', startResize);
-
-        function startResize(event) {
-            isResizing = true;
-            originalWidth = selectedImage.offsetWidth;
-            originalHeight = selectedImage.offsetHeight;
-            startX = event.clientX;
-            startY = event.clientY;
-
-            document.addEventListener('mousemove', resize);
-            document.addEventListener('mouseup', stopResize);
-
-            event.preventDefault();
-        }
-
-        function resize(event) {
-            if (isResizing) {
-                const deltaX = event.clientX - startX;
-                const deltaY = event.clientY - startY;
-
-                const newWidth = originalWidth + deltaX;
-                const newHeight = originalHeight + deltaY;
-
-                selectedImage.style.width = `${newWidth}px`;
-                selectedImage.style.height = `${newHeight}px`;
-            }
-        }
-
-        function stopResize() {
+        document.addEventListener('touchend', function () {
             isResizing = false;
-            document.removeEventListener('mousemove', resize);
-            document.removeEventListener('mouseup', stopResize);
-        }
+        });
     }
 }
+
