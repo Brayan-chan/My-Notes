@@ -25,14 +25,21 @@
      min-height: 100px;
  }
 
- .button-container {
+ .Todos-botones {
      display: flex;
-     justify-content: space-between;
+     justify-content: center;
      align-items: center;
  }
 
+ .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .Todos-botones button,
  .button-container button {
-     margin-right: 4px;
+     margin-right: 10px;
  }
 
  img {
@@ -76,12 +83,3 @@
     position: absolute;
     cursor: pointer;
 }
-
-.top-left { top: 0; left: 0; }
-.top-right { top: 0; right: 0; }
-.bottom-left { bottom: 0; left: 0; }
-.bottom-right { bottom: 0; right: 0; }
-.top-center { top: 0; left: 50%; transform: translateX(-50%); }
-.middle-left { top: 50%; left: 0; transform: translateY(-50%); }
-.middle-right { top: 50%; right: 0; transform: translateY(-50%); }
-.bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); }

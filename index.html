@@ -13,6 +13,14 @@
 
 <body>
     <h1>My Notes</h1>
+    <!--
+    <button onclick="iraHome()">Home</button>
+    <script>
+        function iraHome() {
+        window.location = "../home.html";
+        }
+    </script>
+    -->
 
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
@@ -56,16 +64,19 @@
             <button onclick="addLink()">
                 <i class="fas fa-link"></i>
             </button>
+            
         </div>
+        <br>
+        <div class="Todos-botones">
         <!-- Botones de control de imagen -->
-        <div id="image-controls">
+        <div class="image_controls" id="image-controls">
         <label for="image-upload" id="image-upload-label">
-            <button onclick="addImage()"><i class="fas fa-image"></i>
+            <button onclick="addImage()"><i class="fas fa-image"></i>Upload Image
             </button>
         </label>
         <input type="file" id="image-upload" accept="image/*" style="display: none;">
         <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar Imagen</button>
-        <button onclick="centerImages()">
+        <button onclick="applyAlign('justifyCenter')">
             <i class="fas fa-align-center"></i> Centrar Imagen
         </button>
         <button onclick="moveImage()">
@@ -74,6 +85,7 @@
         <button onclick="resizeImage()">
             <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
         </button>
+        </div>
         </div>
 
         <br>

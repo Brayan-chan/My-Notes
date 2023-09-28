@@ -141,7 +141,7 @@ function moveImage() {
         });
     }
 }
-
+/*
 function centerImage() {
     if (selectedImage) {
         const containerWidth = document.getElementById('note-content-div').offsetWidth;
@@ -158,6 +158,7 @@ function centerImage() {
         selectedImage.style.top = `${centerY}px`;
     }
 }
+*/
 
 let isResizing = false; // Variable de control para el redimensionamiento
 
