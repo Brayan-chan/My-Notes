@@ -86,7 +86,7 @@
 
 @media screen and (max-with: 850px){
     .button-container button {
-        margin-right: 4px;
+        margin-right: 1px;
     }
     
 }
