@@ -1,9 +1,35 @@
 #menu {
+    overflow: hidden;
+    margin: 0;
     background: #232323;
     color: #FFF;
     height: 45px;
-    padding-left: 18px;
-    border-radius: 10px;
+    padding: 0 18px; /* Agregar padding a los lados para espacio alrededor del título */
+    border-radius: 0px;
+    display: flex; /* Usar flexbox para alinear elementos horizontalmente */
+    align-items: center; /* Alinear elementos verticalmente al centro */
+    justify-content: space-between; /* Espacio entre elementos */
+}
+
+.menu-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #232323;
+    color: #cdcdcd;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+#menu h1 {
+    line-height: 0;
+    margin: 0 20px;
+    max-height: 40px;
+    max-width: 100px;
+    flex-shrink: 0;
 }
 
 
@@ -98,10 +124,34 @@
 }
 
 @media screen and (max-width: 800px) {
-    #menu {
-        position: relative
+    .menu {
+            position: absolute;
+            box-sizing: border-box;
+            width: 300px;
+            right: -300px;
+            top: 0;
+            margin: -20px;
+            padding: 75px 50px 50px;
+            background: #cdcdcd;
+            -webkit-font-smoothing: antialiased;
+            /* to stop flickering of text in safari */
+            transform-origin: 0% 0%;
+            transform: translateX(0%);
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        }
+    
+    .menu-container {
+        flex-direction: column;
+        align-items: flex-end;
     }
 
+    .menu h1{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        max-height: 30px;
+    }
     #menu ul {
         background: #111;
         position: absolute;
