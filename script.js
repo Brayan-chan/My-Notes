@@ -40,12 +40,18 @@ function addLink() {
     }
 }
 
-let selectedImage; // Variable para almacenar la imagen seleccionada
-let imageContainer = document.getElementById('image-container'); 
+let selectedImage;
+let offsetX, offsetY;
+let isResizing = false;
+let isMoving = false;
+let originalWidth, originalHeight;
+let originalX, originalY;
 
 function addImage() {
-    const fileInput = document.getElementById('image-upload');
-    fileInput.click();
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
 
     fileInput.addEventListener('change', function () {
         const file = fileInput.files[0];
@@ -56,51 +62,52 @@ function addImage() {
                 img.src = e.target.result;
                 img.style.maxWidth = '100%';
                 img.style.height = 'auto';
+                img.draggable = true;
 
-                // Inserta la imagen en el contenido actual
+                // Agrega la clase resizable para permitir el redimensionamiento
+                img.classList.add('resizable');
+
                 const contentDiv = document.getElementById('note-content-div');
 
                 img.addEventListener('click', function () {
-                    // Al hacer clic en la imagen, la seleccionamos
                     selectedImage = this;
                 });
 
-                // Verifica si ya hay una imagen en el contenido
                 const existingImage = contentDiv.querySelector('img');
                 if (existingImage) {
-                    existingImage.src = img.src; // Reemplaza la imagen existente
+                    existingImage.src = img.src;
                 } else {
-                    contentDiv.appendChild(img); // Agrega la imagen al contenido
+                    contentDiv.appendChild(img);
                 }
 
-                updatePreview(); // Actualiza la vista previa
-
-                // Limpia el input de archivo para que se pueda seleccionar la misma imagen nuevamente
+                updatePreview();
                 fileInput.value = null;
             };
             reader.readAsDataURL(file);
         }
     });
+
+    fileInput.click();
 }
+
 
 function selectImage() {
     const images = document.querySelectorAll('#note-content-div img');
     images.forEach(img => {
-        img.style.border = '2px solid transparent'; // Restablecer bordes en todas las imágenes
+        img.style.border = '2px solid transparent';
     });
 
-    // Agregar evento click para seleccionar una imagen
     images.forEach(img => {
         img.addEventListener('click', function () {
             selectedImage = this;
-            this.style.border = '2px dashed blue'; // Establecer un borde punteado en la imagen seleccionada
+            this.style.border = '2px dashed blue';
         });
     });
 }
 
 function deselectImage() {
     if (selectedImage) {
-        selectedImage.style.border = '2px solid transparent'; // Restablecer el borde de la imagen seleccionada
+        selectedImage.style.border = '2px solid transparent';
         selectedImage = null;
     }
 }
@@ -108,107 +115,104 @@ function deselectImage() {
 function moveImage() {
     if (selectedImage) {
         let isDragging = false;
-        let offsetX, offsetY;
-        let originalPosition = null;
-
+        let originalX, originalY, originalPosition;
         selectedImage.style.cursor = 'move';
 
         selectedImage.addEventListener('mousedown', function (event) {
             isDragging = true;
-            offsetX = event.clientX - selectedImage.getBoundingClientRect().left;
-            offsetY = event.clientY - selectedImage.getBoundingClientRect().top;
-            originalPosition = selectedImage.style.position;
+            originalX = event.clientX - selectedImage.getBoundingClientRect().left;
+            originalY = event.clientY - selectedImage.getBoundingClientRect().top;
+            originalPosition = selectedImage.style.position || '';
 
-            // Cambia la posición a relativa para mover la imagen libremente
-            selectedImage.style.position = 'relative';
-        });
+            selectedImage.style.position = 'absolute';
 
-        document.addEventListener('mousemove', function (event) {
-            if (isDragging) {
-                const x = event.clientX - offsetX;
-                const y = event.clientY - offsetY;
+            document.addEventListener('mousemove', drag);
 
-                selectedImage.style.left = `${x}px`;
-                selectedImage.style.top = `${y}px`;
-            }
+            event.preventDefault();
         });
 
         document.addEventListener('mouseup', function () {
-            isDragging = false;
-
-            // Restaura la posición original (absoluta) de la imagen
-            selectedImage.style.position = originalPosition;
-        });
-    }
-}
-/*
-function centerImage() {
-    if (selectedImage) {
-        const containerWidth = document.getElementById('note-content-div').offsetWidth;
-        const containerHeight = document.getElementById('note-content-div').offsetHeight;
-        const imageWidth = selectedImage.offsetWidth;
-        const imageHeight = selectedImage.offsetHeight;
-
-        // Calcula la posición para centrar la imagen sin rebasar los bordes
-        const centerX = (containerWidth - imageWidth) / 2;
-        const centerY = (containerHeight - imageHeight) / 2;
-
-        // Aplica la posición centrada
-        selectedImage.style.left = `${centerX}px`;
-        selectedImage.style.top = `${centerY}px`;
-    }
-}
-*/
-
-let isResizing = false; // Variable de control para el redimensionamiento
-
-function resizeImage() {
-    if (selectedImage) {
-        if (isResizing) {
-            // Si ya se está redimensionando, desactivar el redimensionamiento
-            isResizing = false;
-            selectedImage.style.cursor = 'default'; // Restablecer el cursor
-        } else {
-            // Si no se está redimensionando, activar el redimensionamiento
-            isResizing = true;
-            selectedImage.style.cursor = 'nwse-resize';
-
-            let startX, startY, startWidth, startHeight;
-
-            selectedImage.addEventListener('mousedown', startResize);
-
-            document.addEventListener('mouseup', function () {
-                document.removeEventListener('mousemove', resize);
-                selectedImage.removeEventListener('mousedown', startResize);
-            });
-
-            function startResize(event) {
-                startX = event.clientX;
-                startY = event.clientY;
-                startWidth = parseInt(getComputedStyle(selectedImage).width, 10);
-                startHeight = parseInt(getComputedStyle(selectedImage).height, 10);
-
-                document.addEventListener('mousemove', resize);
+            if (isDragging) {
+                isDragging = false;
+                selectedImage.style.position = originalPosition;
+                document.removeEventListener('mousemove', drag);
             }
+        });
 
-            function resize(event) {
-                if (!isResizing) {
-                    // Si se desactiva el redimensionamiento durante el movimiento del ratón, salir
-                    document.removeEventListener('mousemove', resize);
-                    return;
-                }
+        function drag(event) {
+            if (isDragging) {
+                const x = event.clientX - originalX;
+                const y = event.clientY - originalY;
 
-                const newWidth = startWidth + event.clientX - startX;
-                const newHeight = startHeight + event.clientY - startY;
-
-                selectedImage.style.width = `${newWidth}px`;
-                selectedImage.style.height = `${newHeight}px`;
+                selectedImage.style.left = `${x}px`;
+                selectedImage.style.top = `${y}px`;
             }
         }
     }
 }
 
+function resizeImage() {
+    if (selectedImage) {
+        let isResizing = false;
+        let originalWidth, originalHeight;
 
+        const resizeHandles = document.createElement('div');
+        resizeHandles.className = 'resize-handles';
+        selectedImage.appendChild(resizeHandles);
+
+        const resizeHandleNW = document.createElement('div');
+        resizeHandleNW.className = 'resize-handle';
+        resizeHandleNW.style.left = '0';
+        resizeHandleNW.style.top = '0';
+        resizeHandles.appendChild(resizeHandleNW);
+
+        const resizeHandleSE = document.createElement('div');
+        resizeHandleSE.className = 'resize-handle';
+        resizeHandleSE.style.right = '0';
+        resizeHandleSE.style.bottom = '0';
+        resizeHandles.appendChild(resizeHandleSE);
+
+        selectedImage.style.cursor = 'nwse-resize';
+
+        selectedImage.addEventListener('mousedown', function (event) {
+            isResizing = true;
+            originalWidth = selectedImage.offsetWidth;
+            originalHeight = selectedImage.offsetHeight;
+
+            const startX = event.clientX;
+            const startY = event.clientY;
+
+            document.addEventListener('mousemove', resize);
+
+            event.preventDefault();
+        });
+
+        document.addEventListener('mouseup', function () {
+            if (isResizing) {
+                isResizing = false;
+                selectedImage.style.cursor = 'move';
+                document.removeEventListener('mousemove', resize);
+                resizeHandles.style.display = 'none';
+            }
+        });
+
+        function resize(event) {
+            if (isResizing) {
+                console.log('resize');
+                const newWidth = originalWidth + event.clientX - startX;
+                const newHeight = originalHeight + event.clientY - startY;
+
+                selectedImage.style.width = `${newWidth}px`;
+                selectedImage.style.height = `${newHeight}px`;
+
+                // Actualiza las manijas de redimensionamiento
+                resizeHandles.style.display = 'block';
+                resizeHandleSE.style.display = 'block';
+                resizeHandleNW.style.display = 'block';
+            }
+        }
+    }
+}
 
 function createNote() {
     const title = document.getElementById('note-title').value;
@@ -245,5 +249,158 @@ function updatePreview() {
     previewContent.innerHTML = contentDiv.innerHTML;
 }
 
+// Obtener el contenedor de contenido y registrar eventos de arrastrar y soltar
+const contentDiv = document.getElementById('note-content-div');
 
+contentDiv.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    contentDiv.classList.add('drag-over');
+});
 
+contentDiv.addEventListener('dragleave', function () {
+    contentDiv.classList.remove('drag-over');
+});
+
+contentDiv.addEventListener('drop', function (e) {
+    e.preventDefault();
+    contentDiv.classList.remove('drag-over');
+
+    const files = e.dataTransfer.files;
+
+    for (const file of files) {
+        if (file.type.startsWith('image/')) {
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+
+            img.addEventListener('click', function () {
+                selectedImage = this;
+            });
+
+            contentDiv.appendChild(img);
+            updatePreview();
+        }
+    }
+});
+
+// Agregar evento para centrar la imagen en el contenedor
+document.getElementById('center-image-button').addEventListener('click', centerImage);
+
+function centerImage() {
+    if (selectedImage) {
+        const containerWidth = contentDiv.offsetWidth;
+        const containerHeight = contentDiv.offsetHeight;
+        const imageWidth = selectedImage.offsetWidth;
+        const imageHeight = selectedImage.offsetHeight;
+
+        const centerX = (containerWidth - imageWidth) / 2;
+        const centerY = (containerHeight - imageHeight) / 2;
+
+        selectedImage.style.left = `${centerX}px`;
+        selectedImage.style.top = `${centerY}px`;
+    }
+}
+
+// Función para mover imágenes en dispositivos móviles
+function moveImageMobile() {
+    if (selectedImage) {
+        let isDragging = false;
+        let originalX, originalY, originalPosition;
+        selectedImage.style.cursor = 'move';
+
+        selectedImage.addEventListener('touchstart', function (event) {
+            isDragging = true;
+            originalX = event.touches[0].clientX - selectedImage.getBoundingClientRect().left;
+            originalY = event.touches[0].clientY - selectedImage.getBoundingClientRect().top;
+            originalPosition = selectedImage.style.position || '';
+
+            selectedImage.style.position = 'absolute';
+
+            document.addEventListener('touchmove', drag);
+
+            event.preventDefault();
+        });
+
+        document.addEventListener('touchend', function () {
+            if (isDragging) {
+                isDragging = false;
+                selectedImage.style.position = originalPosition;
+                document.removeEventListener('touchmove', drag);
+            }
+        });
+
+        function drag(event) {
+            if (isDragging) {
+                const x = event.touches[0].clientX - originalX;
+                const y = event.touches[0].clientY - originalY;
+
+                selectedImage.style.left = `${x}px`;
+                selectedImage.style.top = `${y}px`;
+            }
+        }
+    }
+}
+
+// Función para redimensionar imágenes en dispositivos móviles
+function resizeImageMobile() {
+    if (selectedImage) {
+        let isResizing = false;
+        let originalWidth, originalHeight;
+
+        const resizeHandles = document.createElement('div');
+        resizeHandles.className = 'resize-handles';
+        selectedImage.appendChild(resizeHandles);
+
+        const resizeHandleNW = document.createElement('div');
+        resizeHandleNW.className = 'resize-handle';
+        resizeHandleNW.style.left = '0';
+        resizeHandleNW.style.top = '0';
+        resizeHandles.appendChild(resizeHandleNW);
+
+        const resizeHandleSE = document.createElement('div');
+        resizeHandleSE.className = 'resize-handle';
+        resizeHandleSE.style.right = '0';
+        resizeHandleSE.style.bottom = '0';
+        resizeHandles.appendChild(resizeHandleSE);
+
+        selectedImage.style.cursor = 'nwse-resize';
+
+        selectedImage.addEventListener('touchstart', function (event) {
+            isResizing = true;
+            originalWidth = selectedImage.offsetWidth;
+            originalHeight = selectedImage.offsetHeight;
+
+            const startX = event.touches[0].clientX;
+            const startY = event.touches[0].clientY;
+
+            document.addEventListener('touchmove', resize);
+
+            event.preventDefault();
+        });
+
+        document.addEventListener('touchend', function () {
+            if (isResizing) {
+                isResizing = false;
+                selectedImage.style.cursor = 'move';
+                document.removeEventListener('touchmove', resize);
+                resizeHandles.style.display = 'none';
+            }
+        });
+
+        function resize(event) {
+            if (isResizing) {
+                const newWidth = originalWidth + event.touches[0].clientX - startX;
+                const newHeight = originalHeight + event.touches[0].clientY - startY;
+
+                selectedImage.style.width = `${newWidth}px`;
+                selectedImage.style.height = `${newHeight}px`;
+
+                // Actualiza las manijas de redimensionamiento
+                resizeHandles.style.display = 'block';
+                resizeHandleSE.style.display = 'block';
+                resizeHandleNW.style.display = 'block';
+            }
+        }
+    }
+}

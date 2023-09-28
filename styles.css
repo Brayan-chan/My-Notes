@@ -76,11 +76,19 @@
  }
 
  /* Estilos para los puntos de manipulación */
+.resize-handles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+}
+
 .resize-handle {
     width: 10px;
     height: 10px;
     background-color: #007bff;
     position: absolute;
     cursor: pointer;
+    pointer-events: auto;
 }
-
