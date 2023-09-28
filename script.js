@@ -404,3 +404,44 @@ function resizeImageMobile() {
         }
     }
 }
+
+
+let pinchStartDistance = 0;
+let initialImageWidth = 0;
+let isPinching = false;
+
+function enablePinchToResize() {
+    const selectedImage = document.querySelector('#note-content-div img.resizable');
+
+    selectedImage.addEventListener('touchstart', function (e) {
+        if (e.touches.length === 2) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            pinchStartDistance = getDistance(touch1, touch2);
+            initialImageWidth = selectedImage.offsetWidth;
+            isPinching = true;
+        }
+    });
+
+    selectedImage.addEventListener('touchmove', function (e) {
+        if (isPinching && e.touches.length === 2) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            const currentDistance = getDistance(touch1, touch2);
+            const scale = currentDistance / pinchStartDistance;
+            const newWidth = initialImageWidth * scale;
+
+            selectedImage.style.width = `${newWidth}px`;
+        }
+    });
+
+    selectedImage.addEventListener('touchend', function () {
+        isPinching = false;
+    });
+}
+
+function getDistance(touch1, touch2) {
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
