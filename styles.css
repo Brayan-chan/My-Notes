@@ -39,7 +39,7 @@
 
  .Todos-botones button,
  .button-container button {
-     margin-right: 10px;
+     margin-right: 2px;
  }
 
  img {
@@ -84,9 +84,3 @@
     cursor: pointer;
 }
 
-@media screen and (max-with: 850px){
-    .button-container button {
-        margin-right: 1px;
-    }
-    
-}
