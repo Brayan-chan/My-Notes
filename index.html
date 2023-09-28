@@ -55,8 +55,21 @@
         <label for="note-title">Título:</label>
         <input type="text" id="note-title" placeholder="Título">
         <br><br>
+        <label for="font-family">Fuente:</label>
+        <select id="font-family" onchange="changeFont()">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Times New Roman', serif">Times New Roman</option>
+            <option value="'Courier New', monospace">Courier New</option>
+            <option value="Impact, sans-serif">Impact</option>
+            <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
+        </select>
+        <br><br>
 
         <div class="button-container">
+
+            
             <!-- Botones de formato de texto -->
             <button onclick="applyFormat('bold')"><i class="fas fa-bold"></i></button>
             <button onclick="applyFormat('italic')"><i class="fas fa-italic"></i></button>
@@ -66,7 +79,7 @@
             <button onclick="applyForeColor()"><i class="fas fa-font"></i></button>
             <button onclick="applyBackColor()"><i class="fas fa-highlighter"></i></button>
             <button onclick="applyFontSize()"><i class="fas fa-text-height"></i></button>
-            
+        
             
             <!-- Botones de alineación -->
             <button onclick="applyAlign('justifyLeft')">
@@ -91,10 +104,10 @@
             <button onclick="addLink()">
                 <i class="fas fa-link"></i>
             </button>
-            
         </div>
         <br>
         <div class="Todos-botones">
+            
         <!-- Botones de control de imagen -->
         <div class="image_controls" id="image-controls">
         <label for="image-upload" id="image-upload-label">
