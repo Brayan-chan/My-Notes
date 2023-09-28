@@ -344,3 +344,79 @@ function resizeImageMobile() {
     }
 }
 
+// Función para redimensionar imágenes en dispositivos móviles con manipulación de esquinas y vértices
+function resizeImageMobileAdvanced() {
+    if (selectedImage) {
+        let isResizing = false;
+        let originalWidth, originalHeight;
+        let startX, startY;
+        let resizeDirection = '';
+
+        selectedImage.style.cursor = 'nwse-resize';
+
+        selectedImage.addEventListener('touchstart', function (event) {
+            isResizing = true;
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+            originalWidth = selectedImage.offsetWidth;
+            originalHeight = selectedImage.offsetHeight;
+            const rect = selectedImage.getBoundingClientRect();
+            const touchX = startX - rect.left;
+            const touchY = startY - rect.top;
+            const widthPercent = touchX / rect.width;
+            const heightPercent = touchY / rect.height;
+
+            // Determine la dirección de redimensionamiento en función de dónde se toque la imagen
+            if (widthPercent < 0.5 && heightPercent < 0.5) {
+                resizeDirection = 'nw'; // Redimensionar desde la esquina superior izquierda
+            } else if (widthPercent >= 0.5 && heightPercent < 0.5) {
+                resizeDirection = 'ne'; // Redimensionar desde la esquina superior derecha
+            } else if (widthPercent < 0.5 && heightPercent >= 0.5) {
+                resizeDirection = 'sw'; // Redimensionar desde la esquina inferior izquierda
+            } else {
+                resizeDirection = 'se'; // Redimensionar desde la esquina inferior derecha
+            }
+
+            event.preventDefault();
+        });
+
+        document.addEventListener('touchmove', function (event) {
+            if (isResizing) {
+                const currentX = event.touches[0].clientX;
+                const currentY = event.touches[0].clientY;
+                const deltaX = currentX - startX;
+                const deltaY = currentY - startY;
+
+                let newWidth, newHeight;
+
+                // Realiza la redimensión en función de la dirección
+                if (resizeDirection === 'nw') {
+                    newWidth = originalWidth - deltaX;
+                    newHeight = originalHeight - deltaY;
+                } else if (resizeDirection === 'ne') {
+                    newWidth = originalWidth + deltaX;
+                    newHeight = originalHeight - deltaY;
+                } else if (resizeDirection === 'sw') {
+                    newWidth = originalWidth - deltaX;
+                    newHeight = originalHeight + deltaY;
+                } else if (resizeDirection === 'se') {
+                    newWidth = originalWidth + deltaX;
+                    newHeight = originalHeight + deltaY;
+                }
+
+                selectedImage.style.width = `${newWidth}px`;
+                selectedImage.style.height = `${newHeight}px`;
+
+                // Actualiza las manijas de redimensionamiento si es necesario
+                // (agrega esta parte si tienes manijas de redimensionamiento en dispositivos móviles)
+
+                startX = currentX;
+                startY = currentY;
+            }
+        });
+
+        document.addEventListener('touchend', function () {
+            isResizing = false;
+        });
+    }
+}
