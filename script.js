@@ -153,64 +153,29 @@ function moveImage() {
 
 function resizeImage() {
     if (selectedImage) {
-        let isResizing = false;
-        let originalWidth, originalHeight;
-
-        const resizeHandles = document.createElement('div');
-        resizeHandles.className = 'resize-handles';
-        selectedImage.appendChild(resizeHandles);
-
-        const resizeHandleNW = document.createElement('div');
-        resizeHandleNW.className = 'resize-handle';
-        resizeHandleNW.style.left = '0';
-        resizeHandleNW.style.top = '0';
-        resizeHandles.appendChild(resizeHandleNW);
-
-        const resizeHandleSE = document.createElement('div');
-        resizeHandleSE.className = 'resize-handle';
-        resizeHandleSE.style.right = '0';
-        resizeHandleSE.style.bottom = '0';
-        resizeHandles.appendChild(resizeHandleSE);
-
         selectedImage.style.cursor = 'nwse-resize';
 
         selectedImage.addEventListener('mousedown', function (event) {
-            isResizing = true;
-            originalWidth = selectedImage.offsetWidth;
-            originalHeight = selectedImage.offsetHeight;
-
+            event.preventDefault();
             const startX = event.clientX;
             const startY = event.clientY;
+            const startWidth = parseInt(getComputedStyle(selectedImage).width, 10);
+            const startHeight = parseInt(getComputedStyle(selectedImage).height, 10);
 
             document.addEventListener('mousemove', resize);
 
-            event.preventDefault();
-        });
-
-        document.addEventListener('mouseup', function () {
-            if (isResizing) {
-                isResizing = false;
-                selectedImage.style.cursor = 'move';
+            document.addEventListener('mouseup', function () {
                 document.removeEventListener('mousemove', resize);
-                resizeHandles.style.display = 'none';
-            }
-        });
+            });
 
-        function resize(event) {
-            if (isResizing) {
-                console.log('resize');
-                const newWidth = originalWidth + event.clientX - startX;
-                const newHeight = originalHeight + event.clientY - startY;
+            function resize(event) {
+                const newWidth = startWidth + event.clientX - startX;
+                const newHeight = startHeight + event.clientY - startY;
 
                 selectedImage.style.width = `${newWidth}px`;
                 selectedImage.style.height = `${newHeight}px`;
-
-                // Actualiza las manijas de redimensionamiento
-                resizeHandles.style.display = 'block';
-                resizeHandleSE.style.display = 'block';
-                resizeHandleNW.style.display = 'block';
             }
-        }
+        });
     }
 }
 
@@ -405,43 +370,64 @@ function resizeImageMobile() {
     }
 }
 
+// Función para redimensionar imágenes mediante las esquinas
+function enableCornerResize() {
+    if (selectedImage) {
+        const resizeHandles = document.createElement('div');
+        resizeHandles.className = 'resize-handles';
+        selectedImage.appendChild(resizeHandles);
 
-let pinchStartDistance = 0;
-let initialImageWidth = 0;
-let isPinching = false;
+        const resizeHandleNW = document.createElement('div');
+        resizeHandleNW.className = 'resize-handle';
+        resizeHandleNW.style.left = '0';
+        resizeHandleNW.style.top = '0';
+        resizeHandles.appendChild(resizeHandleNW);
 
-function enablePinchToResize() {
-    const selectedImage = document.querySelector('#note-content-div img.resizable');
+        const resizeHandleSE = document.createElement('div');
+        resizeHandleSE.className = 'resize-handle';
+        resizeHandleSE.style.right = '0';
+        resizeHandleSE.style.bottom = '0';
+        resizeHandles.appendChild(resizeHandleSE);
 
-    selectedImage.addEventListener('touchstart', function (e) {
-        if (e.touches.length === 2) {
-            const touch1 = e.touches[0];
-            const touch2 = e.touches[1];
-            pinchStartDistance = getDistance(touch1, touch2);
-            initialImageWidth = selectedImage.offsetWidth;
-            isPinching = true;
+        selectedImage.style.cursor = 'nwse-resize';
+
+        let isResizing = false;
+        let originalWidth, originalHeight;
+        let startX, startY;
+
+        resizeHandleNW.addEventListener('mousedown', startResize);
+        resizeHandleSE.addEventListener('mousedown', startResize);
+
+        function startResize(event) {
+            isResizing = true;
+            originalWidth = selectedImage.offsetWidth;
+            originalHeight = selectedImage.offsetHeight;
+            startX = event.clientX;
+            startY = event.clientY;
+
+            document.addEventListener('mousemove', resize);
+            document.addEventListener('mouseup', stopResize);
+
+            event.preventDefault();
         }
-    });
 
-    selectedImage.addEventListener('touchmove', function (e) {
-        if (isPinching && e.touches.length === 2) {
-            const touch1 = e.touches[0];
-            const touch2 = e.touches[1];
-            const currentDistance = getDistance(touch1, touch2);
-            const scale = currentDistance / pinchStartDistance;
-            const newWidth = initialImageWidth * scale;
+        function resize(event) {
+            if (isResizing) {
+                const deltaX = event.clientX - startX;
+                const deltaY = event.clientY - startY;
 
-            selectedImage.style.width = `${newWidth}px`;
+                const newWidth = originalWidth + deltaX;
+                const newHeight = originalHeight + deltaY;
+
+                selectedImage.style.width = `${newWidth}px`;
+                selectedImage.style.height = `${newHeight}px`;
+            }
         }
-    });
 
-    selectedImage.addEventListener('touchend', function () {
-        isPinching = false;
-    });
-}
-
-function getDistance(touch1, touch2) {
-    const dx = touch1.clientX - touch2.clientX;
-    const dy = touch1.clientY - touch2.clientY;
-    return Math.sqrt(dx * dx + dy * dy);
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener('mousemove', resize);
+            document.removeEventListener('mouseup', stopResize);
+        }
+    }
 }
