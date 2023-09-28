@@ -1,10 +1,10 @@
-/*
+
 body {
     overflow-x: hidden;
     font-family: Sans-Serif;
     margin: 0;
 }
-*/
+
 
 .menu-container {
     position: relative;
@@ -103,6 +103,12 @@ body {
     font-size: 22px;
 }
 
+/*Clase chat*/
+/* Agregar una clase de ocultar en dispositivos móviles */
+.menu-hidden {
+    display: none;
+}
+
 /* mobile styles */
 @media only screen and (max-width: 767px) {
     .menu-container {
@@ -121,7 +127,11 @@ body {
         max-height: 30px;
     }
 
+/*Clases chat*/
     .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         position: absolute;
         box-sizing: border-box;
         width: 300px;
@@ -136,11 +146,10 @@ body {
         transform: translateX(0%);
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     }
-
+    
     .menu-container input:checked~.menu {
         transform: translateX(-100%);
     }
-}
 
 /* desktop styles */
 @media only screen and (min-width: 768px) {
