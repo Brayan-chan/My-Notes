@@ -40,13 +40,6 @@ function addLink() {
     }
 }
 
-let selectedImage;
-let offsetX, offsetY;
-let isResizing = false;
-let isMoving = false;
-let originalWidth, originalHeight;
-let originalX, originalY;
-
 function addImage() {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -307,15 +300,65 @@ function moveImageMobile() {
     }
 }
 
-function resizeImageMobile() {
+// Función para redimensionar imágenes en dispositivos móviles con manijas en las esquinas
+function resizeImageMobileCustom() {
     if (selectedImage) {
         let isResizing = false;
         let originalWidth, originalHeight;
         let startX, startY;
 
-        selectedImage.style.cursor = 'nwse-resize';
+        // Crear manijas en las esquinas
+        const resizeHandleNW = document.createElement('div');
+        resizeHandleNW.className = 'resize-handle';
+        resizeHandleNW.style.position = 'absolute';
+        resizeHandleNW.style.width = '20px';
+        resizeHandleNW.style.height = '20px';
+        resizeHandleNW.style.top = '0';
+        resizeHandleNW.style.left = '0';
+        resizeHandleNW.style.background = 'rgba(0, 0, 0, 0.5)';
+        resizeHandleNW.style.cursor = 'nwse-resize';
+        selectedImage.appendChild(resizeHandleNW);
 
-        selectedImage.addEventListener('touchstart', function (event) {
+        const resizeHandleNE = document.createElement('div');
+        resizeHandleNE.className = 'resize-handle';
+        resizeHandleNE.style.position = 'absolute';
+        resizeHandleNE.style.width = '20px';
+        resizeHandleNE.style.height = '20px';
+        resizeHandleNE.style.top = '0';
+        resizeHandleNE.style.right = '0';
+        resizeHandleNE.style.background = 'rgba(0, 0, 0, 0.5)';
+        resizeHandleNE.style.cursor = 'nesw-resize';
+        selectedImage.appendChild(resizeHandleNE);
+
+        const resizeHandleSW = document.createElement('div');
+        resizeHandleSW.className = 'resize-handle';
+        resizeHandleSW.style.position = 'absolute';
+        resizeHandleSW.style.width = '20px';
+        resizeHandleSW.style.height = '20px';
+        resizeHandleSW.style.bottom = '0';
+        resizeHandleSW.style.left = '0';
+        resizeHandleSW.style.background = 'rgba(0, 0, 0, 0.5)';
+        resizeHandleSW.style.cursor = 'nesw-resize';
+        selectedImage.appendChild(resizeHandleSW);
+
+        const resizeHandleSE = document.createElement('div');
+        resizeHandleSE.className = 'resize-handle';
+        resizeHandleSE.style.position = 'absolute';
+        resizeHandleSE.style.width = '20px';
+        resizeHandleSE.style.height = '20px';
+        resizeHandleSE.style.bottom = '0';
+        resizeHandleSE.style.right = '0';
+        resizeHandleSE.style.background = 'rgba(0, 0, 0, 0.5)';
+        resizeHandleSE.style.cursor = 'nwse-resize';
+        selectedImage.appendChild(resizeHandleSE);
+
+        // Agregar eventos de inicio de redimensionamiento a las manijas
+        resizeHandleNW.addEventListener('touchstart', startResizeNW);
+        resizeHandleNE.addEventListener('touchstart', startResizeNE);
+        resizeHandleSW.addEventListener('touchstart', startResizeSW);
+        resizeHandleSE.addEventListener('touchstart', startResizeSE);
+
+        function startResizeNW(event) {
             isResizing = true;
             originalWidth = selectedImage.offsetWidth;
             originalHeight = selectedImage.offsetHeight;
@@ -323,63 +366,9 @@ function resizeImageMobile() {
             startY = event.touches[0].clientY;
 
             event.preventDefault();
-        });
+        }
 
-        document.addEventListener('touchmove', function (event) {
-            if (isResizing) {
-                const newWidth = originalWidth + event.touches[0].clientX - startX;
-                const newHeight = originalHeight + event.touches[0].clientY - startY;
-
-                selectedImage.style.width = `${newWidth}px`;
-                selectedImage.style.height = `${newHeight}px`;
-
-                // Actualiza las manijas de redimensionamiento si es necesario
-                // (agrega esta parte si tienes manijas de redimensionamiento en dispositivos móviles)
-            }
-        });
-
-        document.addEventListener('touchend', function () {
-            isResizing = false;
-        });
-    }
-}
-
-// Función para redimensionar imágenes en dispositivos móviles con manipulación de esquinas y vértices
-function resizeImageMobileAdvanced() {
-    if (selectedImage) {
-        let isResizing = false;
-        let originalWidth, originalHeight;
-        let startX, startY;
-        let resizeDirection = '';
-
-        selectedImage.style.cursor = 'nwse-resize';
-
-        selectedImage.addEventListener('touchstart', function (event) {
-            isResizing = true;
-            startX = event.touches[0].clientX;
-            startY = event.touches[0].clientY;
-            originalWidth = selectedImage.offsetWidth;
-            originalHeight = selectedImage.offsetHeight;
-            const rect = selectedImage.getBoundingClientRect();
-            const touchX = startX - rect.left;
-            const touchY = startY - rect.top;
-            const widthPercent = touchX / rect.width;
-            const heightPercent = touchY / rect.height;
-
-            // Determine la dirección de redimensionamiento en función de dónde se toque la imagen
-            if (widthPercent < 0.5 && heightPercent < 0.5) {
-                resizeDirection = 'nw'; // Redimensionar desde la esquina superior izquierda
-            } else if (widthPercent >= 0.5 && heightPercent < 0.5) {
-                resizeDirection = 'ne'; // Redimensionar desde la esquina superior derecha
-            } else if (widthPercent < 0.5 && heightPercent >= 0.5) {
-                resizeDirection = 'sw'; // Redimensionar desde la esquina inferior izquierda
-            } else {
-                resizeDirection = 'se'; // Redimensionar desde la esquina inferior derecha
-            }
-
-            event.preventDefault();
-        });
-
+        // Agregar eventos de movimiento de redimensionamiento
         document.addEventListener('touchmove', function (event) {
             if (isResizing) {
                 const currentX = event.touches[0].clientX;
@@ -387,36 +376,34 @@ function resizeImageMobileAdvanced() {
                 const deltaX = currentX - startX;
                 const deltaY = currentY - startY;
 
-                let newWidth, newHeight;
+                let newWidth = originalWidth + deltaX;
+                let newHeight = originalHeight + deltaY;
 
-                // Realiza la redimensión en función de la dirección
-                if (resizeDirection === 'nw') {
-                    newWidth = originalWidth - deltaX;
-                    newHeight = originalHeight - deltaY;
-                } else if (resizeDirection === 'ne') {
-                    newWidth = originalWidth + deltaX;
-                    newHeight = originalHeight - deltaY;
-                } else if (resizeDirection === 'sw') {
-                    newWidth = originalWidth - deltaX;
-                    newHeight = originalHeight + deltaY;
-                } else if (resizeDirection === 'se') {
-                    newWidth = originalWidth + deltaX;
-                    newHeight = originalHeight + deltaY;
+                // Limitar el tamaño mínimo si es necesario
+                if (newWidth < 50) {
+                    newWidth = 50;
+                }
+                if (newHeight < 50) {
+                    newHeight = 50;
                 }
 
                 selectedImage.style.width = `${newWidth}px`;
                 selectedImage.style.height = `${newHeight}px`;
-
-                // Actualiza las manijas de redimensionamiento si es necesario
-                // (agrega esta parte si tienes manijas de redimensionamiento en dispositivos móviles)
 
                 startX = currentX;
                 startY = currentY;
             }
         });
 
+        // Agregar eventos de finalización de redimensionamiento
         document.addEventListener('touchend', function () {
             isResizing = false;
         });
     }
 }
+
+
+        document.addEventListener('touchend', function () {
+            isResizing = false;
+        });
+

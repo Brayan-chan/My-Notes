@@ -92,3 +92,51 @@
     cursor: pointer;
     pointer-events: auto;
 }
+
+/* Estilos para pantallas grandes (por ejemplo, escritorios) */
+/* Define los estilos para pantallas grandes aquí */
+
+@media (max-width: 768px) {
+    /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
+
+    .resizable-container {
+        position: relative;
+    }
+
+    .resizable-image {
+        width: 100%;
+        height: auto;
+        cursor: move;
+    }
+
+    .resize-handle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .resize-handle-nw {
+        top: 0;
+        left: 0;
+        cursor: nwse-resize;
+    }
+
+    .resize-handle-ne {
+        top: 0;
+        right: 0;
+        cursor: nesw-resize;
+    }
+
+    .resize-handle-sw {
+        bottom: 0;
+        left: 0;
+        cursor: nesw-resize;
+    }
+
+    .resize-handle-se {
+        bottom: 0;
+        right: 0;
+        cursor: nwse-resize;
+    }
+}
