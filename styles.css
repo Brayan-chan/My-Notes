@@ -197,3 +197,71 @@ pre {
 pre code {
     font-family: "Courier New", Courier, monospace;
 }
+
+.math-equation,
+.special-character {
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+.special-character {
+    color: black;
+}
+
+/* Estilos para superíndices y subíndices */
+sup,
+sub {
+    font-size: 0.8em;
+    line-height: 1;
+    vertical-align: baseline;
+    position: relative;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+        /* Estilo del botón del menú */
+        .dropdown-btn {
+            
+            padding: 1px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Contenedor del menú desplegable */
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Estilo de los botones dentro del menú desplegable */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Estilo de los botones dentro del menú desplegable */
+        .dropdown-content button {
+            width: 25%;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        /* Mostrar el menú desplegable al pasar el ratón sobre él */
+        .dropdown:hover .dropdown-content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }

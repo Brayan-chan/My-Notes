@@ -148,8 +148,30 @@
                 <i class="fa-solid fa-file-code"></i> Resaltar Código
             </button>
 
+            <!-- Nuevo botón para ingresar ecuación matemática -->
+            <button onclick="insertEquation()">Ecuación</button>
 
-
+            <div class="dropdown">
+                <button class="dropdown-btn">Simbols ▼</button>
+                <div class="dropdown-content">
+                    <!-- Botones del menú desplegable -->
+                    <button onclick="insertSpecialCharacter('∑')">∑</button>
+                    <button onclick="insertSpecialCharacter('∞')">∞</button>
+                    <button onclick="insertSpecialCharacter('∫')">∫</button>
+                    <button onclick="insertSpecialCharacter('∏')">∏</button>
+                    <button onclick="insertSpecialCharacter('√')">√</button>
+                    <button onclick="insertSpecialCharacter('≈')">≈</button>
+                    <button onclick="insertSpecialCharacter('≤')">≤</button>
+                    <button onclick="insertSpecialCharacter('≥')">≥</button>
+                    <button onclick="insertSpecialCharacter('≠')">≠</button>
+                    <button onclick="insertSpecialCharacter('≡')">≡</button>
+                    <button onclick="insertSpecialCharacter('≢')">≢</button>
+                    <button onclick="insertSpecialCharacter('≣')">≣</button>
+                    <button onclick="insertSpecialCharacter('Δ')">Δ</button>
+                    <button onclick="insertSpecialCharacter('∅')">∅</button>
+                    <button onclick="insertSpecialCharacter('θ')">θ</button>
+                </div>
+            </div>
 
         </div>
 
@@ -173,6 +195,7 @@
 
     <script src="script.js"></script>
     <script src="code.js"></script>
+    <script src="equation.js"></script>
 </body>
 
 </html>
