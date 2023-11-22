@@ -5,4 +5,4 @@ My Notes fue creado con el objetivo de poder utilizar funciones de diferentes ed
 
 ❌MY NOTES SIGUE EN DESARROLLO...❌
 
-[MimoProgramming](https://programmingmimo-basic-certificate.netlify.app/)
+[My-Notes](https://my-notes-bcc.netlify.app/)
