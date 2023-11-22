@@ -265,3 +265,19 @@ sub {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
         }
+
+/* Agrega estilos para checkboxes de lista de tareas */
+.task-checkbox {
+    margin-right: 5px;
+}
+
+/* Estilos para tareas completadas */
+.task-done {
+    text-decoration: line-through;
+    color: #555;
+    opacity: 0.7;
+    /* Opacidad para indicar tarea completada */
+}
+
+
+/*Corregir el error de la nota creada*/
