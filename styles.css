@@ -184,3 +184,16 @@ table div[contenteditable="true"] {
     min-height: 20px;
     /* Ajusta según sea necesario */
 }
+
+/* Agrega estilos para resaltar la sintaxis del código */
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* Establece el estilo del texto dentro del elemento pre */
+pre code {
+    font-family: "Courier New", Courier, monospace;
+}

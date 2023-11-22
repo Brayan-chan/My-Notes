@@ -6,10 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas</title>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="navbar.js"></script>
     <link rel="stylesheet" href="navbar.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+
+
 </head>
 <header>
     <nav id='menu'>
@@ -132,6 +139,12 @@
         <!-- Botones de control de tabla -->
         <div class="table-controls" id="table-controls">
             <button onclick="createTable()"><i class="fas fa-table"></i> Add Table</button>
+
+
+            <!-- Agrega el botón de código -->
+            <button onclick="insertCode()"><i class="fas fa-code"></i> Add Code</button>
+            <button onclick="resaltarCodigo()">Resaltar Código</button>
+
         </div>
 
         <br>
@@ -153,6 +166,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="code.js"></script>
 </body>
 
 </html>
