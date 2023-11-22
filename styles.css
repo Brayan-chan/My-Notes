@@ -32,9 +32,9 @@
  }
 
  .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
  }
 
  .Todos-botones button,
@@ -43,7 +43,7 @@
  }
 
  img {
-    position: relative;
+     position: relative;
  }
 
  /* Estilo de las manijas de redimensionamiento */
@@ -76,67 +76,67 @@
  }
 
  /* Estilos para los puntos de manipulación */
-.resize-handles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    display: none;
-}
+ .resize-handles {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+     display: none;
+ }
 
-.resize-handle {
-    width: 10px;
-    height: 10px;
-    background-color: #007bff;
-    position: absolute;
-    cursor: pointer;
-    pointer-events: auto;
-}
+ .resize-handle {
+     width: 10px;
+     height: 10px;
+     background-color: #007bff;
+     position: absolute;
+     cursor: pointer;
+     pointer-events: auto;
+ }
 
-/* Estilos para pantallas grandes (por ejemplo, escritorios) */
-/* Define los estilos para pantallas grandes aquí */
+ /* Estilos para pantallas grandes (por ejemplo, escritorios) */
+ /* Define los estilos para pantallas grandes aquí */
 
-@media (max-width: 768px) {
-    /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
+ @media (max-width: 768px) {
+     /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
 
-    .resizable-container {
-        position: relative;
-    }
+     .resizable-container {
+         position: relative;
+     }
 
-    .resizable-image {
-        width: 100%;
-        height: auto;
-        cursor: move;
-    }
+     .resizable-image {
+         width: 100%;
+         height: auto;
+         cursor: move;
+     }
 
-    .resize-handle {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+     .resize-handle {
+         position: absolute;
+         width: 20px;
+         height: 20px;
+         background-color: rgba(0, 0, 0, 0.5);
+     }
 
-    .resize-handle-nw {
-        top: 0;
-        left: 0;
-        cursor: nwse-resize;
-    }
+     .resize-handle-nw {
+         top: 0;
+         left: 0;
+         cursor: nwse-resize;
+     }
 
-    .resize-handle-ne {
-        top: 0;
-        right: 0;
-        cursor: nesw-resize;
-    }
+     .resize-handle-ne {
+         top: 0;
+         right: 0;
+         cursor: nesw-resize;
+     }
 
-    .resize-handle-sw {
-        bottom: 0;
-        left: 0;
-        cursor: nesw-resize;
-    }
+     .resize-handle-sw {
+         bottom: 0;
+         left: 0;
+         cursor: nesw-resize;
+     }
 
-    .resize-handle-se {
-        bottom: 0;
-        right: 0;
-        cursor: nwse-resize;
-    }
-}
+     .resize-handle-se {
+         bottom: 0;
+         right: 0;
+         cursor: nwse-resize;
+     }
+ }

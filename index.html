@@ -15,7 +15,7 @@
     <nav id='menu'>
         <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
         <ul>
-            <li><a href='http://'>Home</a></li>
+            <li><a href='http://127.0.0.1:5502/home.html'>Home</a></li>
             <li><a class='dropdown-arrow' href='http://'>Products</a>
                 <ul class='sub-menus'>
                     <li><a href='http://'>Products 1</a></li>
@@ -36,9 +36,10 @@
         </ul>
     </nav>
 </header>
+
 <body>
-    
-    
+
+
     <!--
     <button onclick="iraHome()">Home</button>
     <script>
@@ -56,20 +57,20 @@
         <input type="text" id="note-title" placeholder="Título">
         <br><br>
         <label for="font-family" style="font-size: 18px;">Fuente:</label>
-<select id="font-family" style="font-size: 16px; width: 15%;">
-    <option value="Arial, sans-serif">Arial</option>
-    <option value="Verdana, sans-serif">Verdana</option>
-    <option value="Georgia, serif">Georgia</option>
-    <option value="'Times New Roman', serif">Times New Roman</option>
-    <option value="'Courier New', monospace">Courier New</option>
-    <option value="Impact, sans-serif">Impact</option>
-    <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
-</select>
+        <select id="font-family" style="font-size: 16px; width: 15%;">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Times New Roman', serif">Times New Roman</option>
+            <option value="'Courier New', monospace">Courier New</option>
+            <option value="Impact, sans-serif">Impact</option>
+            <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
+        </select>
         <br><br>
 
         <div class="button-container">
 
-            
+
             <!-- Botones de formato de texto -->
             <button onclick="applyFormat('bold')"><i class="fas fa-bold"></i></button>
             <button onclick="applyFormat('italic')"><i class="fas fa-italic"></i></button>
@@ -79,8 +80,8 @@
             <button onclick="applyForeColor()"><i class="fas fa-font"></i></button>
             <button onclick="applyBackColor()"><i class="fas fa-highlighter"></i></button>
             <button onclick="applyFontSize()"><i class="fas fa-text-height"></i></button>
-        
-            
+
+
             <!-- Botones de alineación -->
             <button onclick="applyAlign('justifyLeft')">
                 <i class="fas fa-align-left"></i>
@@ -91,7 +92,7 @@
             <button onclick="applyAlign('justifyRight')">
                 <i class="fas fa-align-right"></i>
             </button>
-            
+
             <!-- Botones de listas -->
             <button onclick="applyList('insertUnorderedList')">
                 <i class="fas fa-list-ul"></i>
@@ -99,7 +100,7 @@
             <button onclick="applyList('insertOrderedList')">
                 <i class="fas fa-list-ol"></i>
             </button>
-            
+
             <!-- Botones de hipervínculos -->
             <button onclick="addLink()">
                 <i class="fas fa-link"></i>
@@ -107,25 +108,25 @@
         </div>
         <br>
         <div class="Todos-botones">
-            
-        <!-- Botones de control de imagen -->
-        <div class="image_controls" id="image-controls">
-        <label for="image-upload" id="image-upload-label">
-            <button onclick="addImage()"><i class="fas fa-image"></i>Upload Image
-            </button>
-        </label>
-        <input type="file" id="image-upload" accept="image/*" style="display: none;">
-        <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar Imagen</button>
-        <button onclick="applyAlign('justifyCenter')">
-            <i class="fas fa-align-center"></i> Centrar Imagen
-        </button>
-        <button onclick="moveImage()">
-            <i class="fas fa-arrows-alt"></i> Mover Imagen
-        </button>
-        <button onclick="resizeImage()">
-            <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
-        </button>
-        </div>
+
+            <!-- Botones de control de imagen -->
+            <div class="image_controls" id="image-controls">
+                <label for="image-upload" id="image-upload-label">
+                    <button onclick="addImage()"><i class="fas fa-image"></i>Upload Image
+                    </button>
+                </label>
+                <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar Imagen</button>
+                <button onclick="applyAlign('justifyCenter')">
+                    <i class="fas fa-align-center"></i> Centrar Imagen
+                </button>
+                <button onclick="moveImage()">
+                    <i class="fas fa-arrows-alt"></i> Mover Imagen
+                </button>
+                <button onclick="resizeImage()">
+                    <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
+                </button>
+            </div>
         </div>
 
         <br>
