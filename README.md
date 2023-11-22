@@ -4,3 +4,5 @@
 My Notes fue creado con el objetivo de poder utilizar funciones de diferentes editores de texto pero con mis propios gustos...
 
 ❌MY NOTES SIGUE EN DESARROLLO...❌
+
+[MimoProgramming](https://programmingmimo-basic-certificate.netlify.app/)
