@@ -134,9 +134,53 @@
          cursor: nesw-resize;
      }
 
-     .resize-handle-se {
-         bottom: 0;
-         right: 0;
-         cursor: nwse-resize;
-     }
- }
+    .resize-handle-se {
+        bottom: 0;
+        right: 0;
+        cursor: nwse-resize;
+    }
+}
+
+/* Estilos para la tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: 1px solid #000;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para las celdas editables dentro de la tabla */
+table div[contenteditable="true"] {
+    outline: none;
+    min-height: 20px;
+    /* Ajusta el tamaño mínimo de las celdas */
+}
+
+/* Estilos adicionales para el contenido div */
+#note-content-div {
+    min-height: 100px;
+    /* Establece un mínimo para el área de contenido */
+}
+
+/* Estilos adicionales para la tabla */
+
+.editable-table {
+    border-collapse: collapse;
+}
+
+.editable-cell {
+    min-width: 50px;
+    /* Ajusta según sea necesario */
+    min-height: 20px;
+    /* Ajusta según sea necesario */
+}

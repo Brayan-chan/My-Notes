@@ -430,3 +430,35 @@ function resizeImageMobileCustom() {
 document.addEventListener("touchend", function () {
   isResizing = false;
 });
+
+
+// Crear tablas
+function createTable() {
+  const rows = prompt("Número de filas:");
+  const cols = prompt("Número de columnas:");
+
+  if (rows && cols && /^\d+$/.test(rows) && /^\d+$/.test(cols)) {
+    const table = document.createElement("table");
+    table.classList.add("editable-table");
+
+    for (let i = 0; i < rows; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < cols; j++) {
+        const cell = row.insertCell();
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("editable-cell");
+        contentDiv.setAttribute("contenteditable", "true");
+        cell.appendChild(contentDiv);
+      }
+    }
+
+    const contentDiv = document.getElementById("note-content-div");
+    contentDiv.focus();
+    document.execCommand("insertHTML", false, table.outerHTML);
+    // No es necesario llamar a updatePreview aquí
+  } else {
+    alert("Por favor, ingresa números válidos para filas y columnas.");
+  }
+}
+
+
