@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="navbar.js"></script>
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="canvas.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
@@ -173,9 +174,12 @@
                 </div>
             </div>
 
-            <button onclick="toggleTaskList()">Task List</button>
-            <button onclick="toggleNumberedList()">Lista Enumerada</button>
-            <button onclick="toggleBulletList()">Lista de Viñetas</button>
+            <button onclick="toggleTaskList()">✔️ List</button>
+            <button onclick="toggleNumberedList()">1- List</button>
+            <button onclick="toggleBulletList()">° List</button>
+            <button onclick="toggleDrawingMode()"><i class="fas fa-pencil"></i> Dibujar</button>
+
+
 
         </div>
 
@@ -203,6 +207,7 @@
     <script src="code.js"></script>
     <script src="equation.js"></script>
     <script src="listas.js"></script>
+    <script src="pencil.js"></script>
 </body>
 
 </html>
