@@ -20,7 +20,7 @@ function initializeCanvas() {
   // No limpiar el lienzo existente, solo crear uno nuevo si no existe
   if (!canvas) {
     canvas = document.createElement("canvas");
-    canvas.width = 500;
+    canvas.width = 400;
     //para computadoras es 580
     canvas.height = 500;
     canvas.style.backgroundColor = "#0D0909";
