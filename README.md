@@ -5,3 +5,5 @@ My Notes fue creado con el objetivo de poder utilizar funciones de diferentes ed
 ❌MY NOTES SIGUE EN DESARROLLO...❌
 
 [My-Notes](https://my-notes-bcc.netlify.app/)
+
+Docs/stadist-notes.png
