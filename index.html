@@ -126,22 +126,23 @@
             <!-- Botones de control de imagen -->
             <div class="image_controls" id="image-controls">
                 <label for="image-upload" id="image-upload-label">
-                    <button onclick="addImage()"><i class="fas fa-image"></i>Upload Image
+                    <button onclick="addImage()"><i class="fas fa-image"></i>
                     </button>
                 </label>
                 <input type="file" id="image-upload" accept="image/*" style="display: none;">
-                <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar Imagen</button>
-                <button onclick="applyAlign('justifyCenter')">
+                <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> </button>
+                <!--<button onclick="applyAlign('justifyCenter')">
                     <i class="fas fa-align-center"></i> Centrar Imagen
                 </button>
+                -->
                 <button onclick="moveImage()">
-                    <i class="fas fa-arrows-alt"></i> Mover Imagen
+                    <i class="fas fa-arrows-alt"></i>
                 </button>
                 <button onclick="resizeImage()">
-                    <i class="fas fa-expand-arrows-alt"></i> Redimensionar Imagen
+                    <i class="fas fa-expand-arrows-alt"></i>
                 </button>
             </div>
-        </div>
+        </div><br>
 
         <!-- Botones de control de tabla -->
         <div class="table-controls" id="table-controls">
@@ -155,7 +156,7 @@
             </button>
 
             <!-- Nuevo botón para ingresar ecuación matemática -->
-            <button onclick="insertEquation()">Ecuación</button>
+            <button onclick="insertEquation()"><i class="fas fa-calculator"></i> Ecuación</button>
 
             <div class="dropdown">
                 <button class="dropdown-btn">Simbols ▼</button>
@@ -179,9 +180,10 @@
                 </div>
             </div>
 
-            <button onclick="toggleTaskList()"><i class="fas fa-check"></i>List</button>
-            <button onclick="toggleNumberedList()">1- List</button>
+            <button onclick="toggleTaskList()"><i class="fa-solid fa-list-check"></i> List</button>
+            <!--<button onclick="toggleNumberedList()">1- List</button>
             <button onclick="toggleBulletList()">° List</button>
+            -->
             <button onclick="toggleDrawingMode()"><i class="fas fa-pencil"></i> Dibujar</button>
 
             <!-- Agrega esta sección al cuerpo de tu documento -->
