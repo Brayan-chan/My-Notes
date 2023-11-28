@@ -503,3 +503,38 @@ function createTable() {
     alert("Por favor, ingresa números válidos para filas y columnas.");
   }
 }
+
+function toggleDarkMode() {
+  const body = document.body;
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const darkModeIcon = document.getElementById("dark-mode-icon");
+
+  body.classList.toggle("dark-mode");
+  darkModeToggle.classList.add("animate-toggle");
+
+  // Toggle between "fa-toggle-on" and "fa-toggle-off"
+  darkModeIcon.classList.toggle("fa-toggle-on");
+  darkModeIcon.classList.toggle("fa-toggle-off");
+
+  // Remove animation class after the animation completes
+  setTimeout(() => {
+    darkModeToggle.classList.remove("animate-toggle");
+  }, 300); // 300ms, should match the transition time in CSS
+
+  // Save dark mode preference to localStorage
+  localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+}
+
+// Call this function to set dark mode based on user preference
+function setInitialDarkMode() {
+  const savedDarkMode = localStorage.getItem("darkMode");
+  const body = document.body;
+  if (savedDarkMode === "true") {
+    body.classList.add("dark-mode");
+  } else {
+    body.classList.remove("dark-mode");
+  }
+}
+
+// Call setInitialDarkMode when the page loads
+window.onload = setInitialDarkMode;
