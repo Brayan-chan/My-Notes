@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Ortográfica</title>
+    <style>
+        /* Estilos aquí */
+    </style>
+</head>
+
+<body>
+
+    <form id="formCorreccion">
+        <textarea id="textoUsuario" name="texto_usuario" rows="4" cols="50"></textarea>
+        <input type="submit" value="Corregir Ortografía">
+    </form>
+
+    <div id="sugerencias"></div>
+
+    <script>
+        document.getElementById('formCorreccion').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var textoUsuario = document.getElementById('textoUsuario').value;
+
+            fetch('/correccion_ortografica', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'texto_usuario=' + encodeURIComponent(textoUsuario),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var sugerenciasDiv = document.getElementById('sugerencias');
+                    sugerenciasDiv.innerHTML = '';
+
+                    for (var palabra in data) {
+                        var correcciones = data[palabra];
+
+                        var sugerenciaHTML = '<p>Palabra: ' + palabra + ', Correcciones sugeridas: ' + correcciones.join(', ') + '</p>';
+                        sugerenciasDiv.innerHTML += sugerenciaHTML;
+                    }
+                });
+        });
+    </script>
+
+</body>
+
+</html>

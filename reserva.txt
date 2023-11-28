@@ -3,20 +3,23 @@
 function changeFont() {
   const fontFamilySelect = document.getElementById("font-family");
   const selectedFont = fontFamilySelect.value;
-  document.execCommand("fontName", false, selectedFont);
-}
 
-function applyFontFamily() {
-  const fontFamily = prompt(
-    "Ingresa el nombre de la fuente (por ejemplo, Arial):"
-  );
-  if (fontFamily) {
-    document.execCommand("fontName", false, fontFamily);
+  // Verificar si hay texto seleccionado
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    const span = document.createElement("span");
+    span.style.fontFamily = selectedFont;
+    range.surroundContents(span);
+  } else {
+    // Si no hay texto seleccionado, aplicar la fuente al contenido completo
+    document.execCommand("fontName", false, selectedFont);
   }
 }
 
 function handleInput() {
   console.log("Se ha detectado una entrada de texto");
+  
 }
 
 function applyFormat(style) {
@@ -219,8 +222,10 @@ function createNote() {
   }
 }
 
+
 //FUNCIONES PRELIMINARES PARA CREAR NOTAS CON DIBUJOS PERO FALTA PONER LA LOGICA PARA QUE TAMBIEN DEJE INSERTAR LAS IMAGENES Y LAS TABLAS
 //ESTE CODIGO ESTA BIEN PERO HAY QUE CORREGIR EL ERROR DEL CANVAS QUE SE GENERA CUANDO SE CREA UNA NOTA
+
 
 /*
 function createNote() {
@@ -474,6 +479,7 @@ function resizeImageMobileCustom() {
 document.addEventListener("touchend", function () {
   isResizing = false;
 });
+
 
 // Crear tablas
 function createTable() {

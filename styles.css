@@ -254,6 +254,7 @@ sub {
         /* Estilo de los botones dentro del menú desplegable */
         .dropdown-content button {
             width: 25%;
+            background-color: transparent;
             padding: 10px;
             text-align: center;
             border: none;
@@ -282,3 +283,32 @@ sub {
 
 
 /*Corregir el error de la nota creada*/
+
+/* Agrega estilos para subrayar las palabras incorrectas */
+.note .spell-error {
+    border-bottom: 2px solid red;
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilos para el desplegable de sugerencias */
+#sugerenciasDiv {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    position: absolute;
+    z-index: 1000;
+}
+
+
+#note-content-div[contenteditable="true"] {
+    font-family: 'Arial';
+    font-size: 12px;
+    line-height: 1;
+}
+
+.crear {
+    border-radius: 5px;
+    border: black 1px solid; 
+}
