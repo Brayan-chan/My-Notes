@@ -202,10 +202,10 @@ function createNote() {
     const noteElement = document.createElement("div");
     noteElement.classList.add("note");
     noteElement.innerHTML = `
-            <button><i class="fa-solid fa-trash-can"></i></button>
-            <button><i class="fa-solid fa-pen-to-square"></i></button>
-            <button><i class="fa-solid fa-print"></i></button>
-            <button><i class="fa-solid fa-copy"></i></button>
+            <button onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
+            <button onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button "><i class="fa-solid fa-print"></i></button>
+            <button onclick="copyNote(this)"><i class="fa-solid fa-copy"></i></button>
 
             <h3>${title}</h3>
             <div>${contentDiv.innerHTML}</div>
@@ -224,6 +224,19 @@ function createNote() {
   }
 }
 
+function deleteNote(button) {
+  const note = button.closest(".note");
+  note.remove();
+}
+
+function editNote(button) {
+  const note = button.closest(".note");
+  const title = note.querySelector("h3").textContent;
+  const content = note.querySelector("div").textContent;
+  document.getElementById("note-title").value = title;
+  document.getElementById("note-content-div").innerHTML = content;
+  note.remove();
+}
 
 //FUNCIONES PRELIMINARES PARA CREAR NOTAS CON DIBUJOS PERO FALTA PONER LA LOGICA PARA QUE TAMBIEN DEJE INSERTAR LAS IMAGENES Y LAS TABLAS
 //ESTE CODIGO ESTA BIEN PERO HAY QUE CORREGIR EL ERROR DEL CANVAS QUE SE GENERA CUANDO SE CREA UNA NOTA
