@@ -202,10 +202,10 @@ function createNote() {
     const noteElement = document.createElement("div");
     noteElement.classList.add("note");
     noteElement.innerHTML = `
-            <button onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
-            <button onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button "><i class="fa-solid fa-print"></i></button>
-            <button onclick="copyNote(this)"><i class="fa-solid fa-copy"></i></button>
+            <button style="float: right; color: red; background-color: transparent; border: none; cursor: pointer;" onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
+            <button style="float: right; color: green; background-color: transparent; border: none; cursor: pointer;" onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button style="float: right; color: black; background-color: transparent; border: none; cursor: pointer;" onclick="printNote(this) "><i class="fa-solid fa-print"></i></button>
+            <button style="float: right; color: blue; background-color: transparent; border: none; cursor: pointer;" onclick="copyNote(this)"><i class="fa-solid fa-copy"></i></button>
 
             <h3>${title}</h3>
             <div>${contentDiv.innerHTML}</div>
