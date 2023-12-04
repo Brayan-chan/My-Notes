@@ -1,26 +1,25 @@
-from flask import Flask, render_template, request, jsonify
-from spellchecker import SpellChecker
+import openai
+import os
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+load_dotenv()
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
-spell = SpellChecker(language='es')
+audio_file_path = "audio.mp3"
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# Leer el archivo de audio como binario
+with open(audio_file_path, "rb") as audio_file:
+    audio_data = audio_file.read()
 
-@app.route('/correccion_ortografica', methods=['POST'])
-def correccion_ortografica():
-    texto_usuario = request.form['texto_usuario']
-    palabras = texto_usuario.split()
+# Realizar la transcripción de audio con la nueva API
+response = openai.Completion.create(
+    engine="whisper-1",
+    prompt="Transcribe the following audio:\n" + audio_data.decode("utf-8"),
+    temperature=0,
+    max_tokens=1024,
+    n=1,
+    stop=None,
+)
 
-    # Encuentra palabras mal escritas
-    palabras_erroneas = spell.unknown(palabras)
-
-    # Sugerencias de corrección
-    sugerencias = {palabra: spell.candidates(palabra) for palabra in palabras_erroneas}
-
-    return jsonify(sugerencias)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+transcription = response['choices'][0]['text']
+print("Resultado:", transcription)

@@ -1,6 +1,6 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-webkit-speech>
 
 <head>
     <meta charset="UTF-8">
@@ -190,6 +190,10 @@
             -->
             <button onclick="toggleDrawingMode()"><i class="fas fa-pencil"></i> Dibujar</button>
 
+            <button onclick="toggleSpeechRecognition()">
+                <i id="speech-icon" class="fas fa-microphone"></i> Escuchar
+            </button>
+
             <!-- Agrega esta sección al cuerpo de tu documento -->
             <div id="sugerenciasDiv" class="suggestions-menu"></div>
 
@@ -222,6 +226,7 @@
     <script src="listas.js"></script>
     <script src="pencil.js"></script>
     <script src="Typo.js"></script>
+    <script src="escuchar.js"></script>
 </body>
 
 </html>
