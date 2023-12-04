@@ -202,7 +202,12 @@ function createNote() {
     const noteElement = document.createElement("div");
     noteElement.classList.add("note");
     noteElement.innerHTML = `
-            <h2>${title}</h2>
+            <button><i class="fa-solid fa-trash-can"></i></button>
+            <button><i class="fa-solid fa-pen-to-square"></i></button>
+            <button><i class="fa-solid fa-print"></i></button>
+            <button><i class="fa-solid fa-copy"></i></button>
+
+            <h3>${title}</h3>
             <div>${contentDiv.innerHTML}</div>
         `;
 
