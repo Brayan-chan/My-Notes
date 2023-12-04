@@ -193,7 +193,7 @@ function resizeImage() {
     });
   }
 }
-
+/*
 function createNote() {
   const title = document.getElementById("note-title").value;
   const contentDiv = document.getElementById("note-content-div");
@@ -218,11 +218,12 @@ function createNote() {
     }
   }
 }
+*/
 
 //FUNCIONES PRELIMINARES PARA CREAR NOTAS CON DIBUJOS PERO FALTA PONER LA LOGICA PARA QUE TAMBIEN DEJE INSERTAR LAS IMAGENES Y LAS TABLAS
 //ESTE CODIGO ESTA BIEN PERO HAY QUE CORREGIR EL ERROR DEL CANVAS QUE SE GENERA CUANDO SE CREA UNA NOTA
 
-/*
+
 function createNote() {
   const title = document.getElementById("note-title").value;
   const contentDiv = document.getElementById("note-content-div");
@@ -260,7 +261,7 @@ function createNote() {
   }
 }
 
-*/
+
 
 function updatePreview() {
   const title = document.getElementById("note-title").value;

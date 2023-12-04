@@ -31,9 +31,13 @@ function initializeCanvas() {
   context = canvas.getContext("2d");
 
   canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("touchstart", startDrawing);
   canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("touchmove", draw);
   canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("touchend", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("touchcancel", stopDrawing);
 
   const noteContentDiv = document.getElementById("note-content-div");
   noteContentDiv.appendChild(canvas);
