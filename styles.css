@@ -334,3 +334,8 @@ body.dark-mode {
     background-color: #222;
     color: #fff;
 }
+
+body.dark-mode .note {
+    background-color: #222;
+    color: #fff;
+}
