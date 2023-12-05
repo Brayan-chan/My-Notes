@@ -194,6 +194,10 @@
                 <i id="speech-icon" class="fas fa-microphone"></i> Escuchar
             </button>
 
+            <button onclick="selectAllAndSummarize()"><i class="fa-solid fa-square-pen"></i> Resumir</button>
+
+            <button onclick="toggleFullScreen()"><i class="fas fa-expand"></i> Full Screen</button>
+
             <!-- Agrega esta sección al cuerpo de tu documento -->
             <div id="sugerenciasDiv" class="suggestions-menu"></div>
 
@@ -203,6 +207,12 @@
         <br>
         <label for="note-content">Contenido:</label>
         <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()" onfocus="handleFocus()" onblur="handleBlur()">
+            <!-- Dentro del note-content-div, agrega un contenedor para el resumen -->
+            <div id="content-summary" contenteditable="false" style="display: none;">
+                <p id="summary-text"></p>
+                <button onclick="acceptSummary()"><i class="fa-solid fa-check"></i></button>
+                <button onclick="discardSummary()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
             <!-- Aqui se agregará el contenido de la nota -->
         </div><br>
         <button class="crear" onclick="createNote()">Crear Nota</button>
@@ -227,6 +237,8 @@
     <script src="pencil.js"></script>
     <script src="Typo.js"></script>
     <script src="escuchar.js"></script>
+    <script src="full_screen.js"></script>
+    <script src="resume.js"></script>
 </body>
 
 </html>
