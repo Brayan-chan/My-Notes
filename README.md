@@ -7,7 +7,14 @@ My Notes fue creado con el objetivo de poder utilizar funciones de diferentes ed
 [My-Notes](https://my-notes-bcc.netlify.app/)
 
 <hr>
+
+<div align="center">
+  
 <img width="500" alt="image" src="Docs/stadist-notes.png">
+
+</div>
+
+<hr>
 
 
 
