@@ -12,6 +12,10 @@ My Notes fue creado con el objetivo de poder utilizar funciones de diferentes ed
   
 <img width="500" alt="image" src="Docs/stadist-notes.png">
 
+<br>
+
+<img width="500" alt="image" src="Docs/stadist2.png">
+
 </div>
 
 <hr>
