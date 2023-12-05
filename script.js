@@ -139,7 +139,7 @@ function moveImage() {
       originalY = event.clientY - selectedImage.getBoundingClientRect().top;
       originalPosition = selectedImage.style.position || "";
 
-      selectedImage.style.position = "absolute";
+      selectedImage.style.position = "relative";
 
       document.addEventListener("mousemove", drag);
 
