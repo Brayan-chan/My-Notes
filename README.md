@@ -16,5 +16,11 @@ My Notes fue creado con el objetivo de poder utilizar funciones de diferentes ed
 
 <hr>
 
+<div>
+
+<img width="500" alt="image" src="Docs/Visitors-Notes.png">
+  
+</div>
+
 
 
