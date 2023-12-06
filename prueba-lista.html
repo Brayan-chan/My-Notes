@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .note {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .task-done {
+            text-decoration: line-through;
+            color: #555;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <label for="note-title">Title:</label>
+        <input type="text" id="note-title">
+    </div>
+
+    <div>
+        <label for="note-content-div">Content:</label>
+        <div id="note-content-div" contenteditable="true" style="border: 1px solid #ccc; padding: 10px;"></div>
+    </div>
+
+    <button onclick="insertTaskList()">Insert Task List</button>
+    <button onclick="createNote()">Create Note</button>
+
+    <div id="notes-container"></div>
+
+    <script>
+        function insertTaskList() {
+                const selection = window.getSelection();
+                const range = selection.getRangeAt(0);
+                const fragment = range.extractContents();
+
+                const div = document.createElement("div");
+                Array.from(fragment.childNodes).forEach((node) => {
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.classList.add("task-checkbox");
+                    checkbox.onclick = handleTaskCheckboxClick;
+                    div.appendChild(checkbox);
+                    div.appendChild(node.cloneNode(true));
+                    div.appendChild(document.createElement("br")); // Optional: Add a line break after each checkbox
+                });
+
+                range.deleteContents();
+                range.insertNode(div);
+            }
+
+        function createNote() {
+            const title = document.getElementById("note-title").value;
+            const contentDiv = document.getElementById("note-content-div");
+
+            if (title || contentDiv.innerHTML.trim() !== "") {
+                const noteElement = document.createElement("div");
+                noteElement.classList.add("note");
+                noteElement.innerHTML = `
+      <button style="float: right; color: red; background-color: transparent; border: none; cursor: pointer;" onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
+      <button style="float: right; color: green; background-color: transparent; border: none; cursor: pointer;" onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="print-button" style="float: right; color: black; background-color: transparent; border: none; cursor: pointer;" onclick="printNote(this)"><i class="fa-solid fa-print"></i></button>
+      <button style="float: right; color: blue; background-color: transparent; border: none; cursor: pointer;" onclick="copyNote(this)"><i class="fa-solid fa-copy"></i></button>
+      <h3>${title}</h3>
+      <div>${processContent(contentDiv.innerHTML)}</div>
+    `;
+
+                const notesContainer = document.getElementById("notes-container");
+                notesContainer.appendChild(noteElement);
+
+                document.getElementById("note-title").value = "";
+                contentDiv.innerHTML = "";
+            }
+        }
+
+        function processContent(content) {
+            const container = document.createElement("div");
+            container.innerHTML = content;
+
+            Array.from(container.childNodes).forEach((node) => {
+                if (node.nodeName === 'INPUT' && node.type === 'checkbox') {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.classList.add('task-checkbox');
+                    checkbox.onclick = handleTaskCheckboxClick;
+
+                    const span = document.createElement('span');
+                    span.appendChild(checkbox);
+
+                    if (node.checked) {
+                        span.classList.add('task-done');
+                        checkbox.checked = true;
+                    }
+
+                    node.replaceWith(span);
+                }
+            });
+
+            return container.innerHTML;
+        }
+
+        function handleTaskCheckboxClick() {
+                const container = this.closest('.notes-container') || this.closest('#notes-container');
+                const parent = this.parentNode;
+
+                if (container && parent) {
+                    const textNode = Array.from(parent.childNodes).find(node => node.nodeType === 3); // Find text node
+
+                    if (textNode) {
+                        if (this.checked) {
+                            parent.classList.add("task-done");
+                            textNode.style.textDecoration = "line-through";
+                            textNode.style.color = "#555";
+                            textNode.style.opacity = 0.7;
+                        } else {
+                            parent.classList.remove("task-done");
+                            textNode.style.textDecoration = "none";
+                            textNode.style.color = "inherit";
+                            textNode.style.opacity = 1;
+                        }
+                    }
+                }
+            }
+
+
+        function deleteNote(button) {
+            const noteElement = button.closest('.note');
+            noteElement.parentNode.removeChild(noteElement);
+        }
+    </script>
+
+</body>
+
+</html>

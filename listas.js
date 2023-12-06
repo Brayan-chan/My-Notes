@@ -11,20 +11,19 @@ function toggleTaskList() {
   const range = selection.getRangeAt(0);
   const fragment = range.extractContents();
 
-  const ul = document.createElement("ul");
+  const div = document.createElement("div");
   Array.from(fragment.childNodes).forEach((node) => {
-    const li = document.createElement("li");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.classList.add("task-checkbox");
     checkbox.onclick = handleTaskCheckboxClick;
-    li.appendChild(checkbox);
-    li.appendChild(node.cloneNode(true));
-    ul.appendChild(li);
+    div.appendChild(checkbox);
+    div.appendChild(node.cloneNode(true));
+    div.appendChild(document.createElement("br")); // Optional: Add a line break after each checkbox
   });
 
   range.deleteContents();
-  range.insertNode(ul);
+  range.insertNode(div);
 }
 
 function handleTaskCheckboxClick() {
