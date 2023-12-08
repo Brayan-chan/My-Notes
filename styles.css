@@ -135,207 +135,207 @@
          cursor: nesw-resize;
      }
 
-    .resize-handle-se {
-        bottom: 0;
-        right: 0;
-        cursor: nwse-resize;
-    }
-}
+     .resize-handle-se {
+         bottom: 0;
+         right: 0;
+         cursor: nwse-resize;
+     }
+ }
 
-/* Estilos para la tabla */
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+ /* Estilos para la tabla */
+ table {
+     border-collapse: collapse;
+     width: 100%;
+ }
 
-table,
-th,
-td {
-    border: 1px solid #000;
-}
+ table,
+ th,
+ td {
+     border: 1px solid #000;
+ }
 
-th,
-td {
-    padding: 8px;
-    text-align: left;
-}
+ th,
+ td {
+     padding: 8px;
+     text-align: left;
+ }
 
-/* Estilos para las celdas editables dentro de la tabla */
-table div[contenteditable="true"] {
-    outline: none;
-    min-height: 20px;
-    /* Ajusta el tamaño mínimo de las celdas */
-}
+ /* Estilos para las celdas editables dentro de la tabla */
+ table div[contenteditable="true"] {
+     outline: none;
+     min-height: 20px;
+     /* Ajusta el tamaño mínimo de las celdas */
+ }
 
-/* Estilos adicionales para el contenido div */
-#note-content-div {
-    min-height: 100px;
-    /* Establece un mínimo para el área de contenido */
-}
+ /* Estilos adicionales para el contenido div */
+ #note-content-div {
+     min-height: 100px;
+     /* Establece un mínimo para el área de contenido */
+ }
 
-/* Estilos adicionales para la tabla */
+ /* Estilos adicionales para la tabla */
 
-.editable-table {
-    border-collapse: collapse;
-}
+ .editable-table {
+     border-collapse: collapse;
+ }
 
-.editable-cell {
-    min-width: 50px;
-    /* Ajusta según sea necesario */
-    min-height: 20px;
-    /* Ajusta según sea necesario */
-}
+ .editable-cell {
+     min-width: 50px;
+     /* Ajusta según sea necesario */
+     min-height: 20px;
+     /* Ajusta según sea necesario */
+ }
 
-/* Agrega estilos para resaltar la sintaxis del código */
-pre {
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
-}
+ /* Agrega estilos para resaltar la sintaxis del código */
+ pre {
+     background-color: #f4f4f4;
+     padding: 10px;
+     border-radius: 5px;
+     overflow-x: auto;
+ }
 
-/* Establece el estilo del texto dentro del elemento pre */
-pre code {
-    font-family: "Courier New", Courier, monospace;
-}
+ /* Establece el estilo del texto dentro del elemento pre */
+ pre code {
+     font-family: "Courier New", Courier, monospace;
+ }
 
-.math-equation,
-.special-character {
-    font-style: italic;
-    font-size: 1.2em;
-}
+ .math-equation,
+ .special-character {
+     font-style: italic;
+     font-size: 1.2em;
+ }
 
-.special-character {
-    color: black;
-}
+ .special-character {
+     color: black;
+ }
 
-/* Estilos para superíndices y subíndices */
-sup,
-sub {
-    font-size: 0.8em;
-    line-height: 1;
-    vertical-align: baseline;
-    position: relative;
-}
+ /* Estilos para superíndices y subíndices */
+ sup,
+ sub {
+     font-size: 0.8em;
+     line-height: 1;
+     vertical-align: baseline;
+     position: relative;
+ }
 
-sup {
-    top: -0.5em;
-}
+ sup {
+     top: -0.5em;
+ }
 
-sub {
-    bottom: -0.25em;
-}
+ sub {
+     bottom: -0.25em;
+ }
 
-        /* Estilo del botón del menú */
-        .dropdown-btn {
-            
-            padding: 1px;
-            font-size: 14px;
-            cursor: pointer;
-        }
+ /* Estilo del botón del menú */
+ .dropdown-btn {
 
-        /* Contenedor del menú desplegable */
-        .dropdown {
-            display: inline-block;
-            position: relative;
-        }
+     padding: 1px;
+     font-size: 14px;
+     cursor: pointer;
+ }
 
-        /* Estilo de los botones dentro del menú desplegable */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            padding: 10px;
-            border-radius: 5px;
-        }
+ /* Contenedor del menú desplegable */
+ .dropdown {
+     display: inline-block;
+     position: relative;
+ }
 
-        /* Estilo de los botones dentro del menú desplegable */
-        .dropdown-content button {
-            width: 25%;
-            background-color: transparent;
-            padding: 10px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-        }
+ /* Estilo de los botones dentro del menú desplegable */
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f9f9f9;
+     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+     z-index: 1;
+     padding: 10px;
+     border-radius: 5px;
+ }
 
-        /* Mostrar el menú desplegable al pasar el ratón sobre él */
-        .dropdown:hover .dropdown-content {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-        }
+ /* Estilo de los botones dentro del menú desplegable */
+ .dropdown-content button {
+     width: 25%;
+     background-color: transparent;
+     padding: 10px;
+     text-align: center;
+     border: none;
+     cursor: pointer;
+     margin: 5px;
+ }
 
-/* Agrega estilos para checkboxes de lista de tareas */
-.task-checkbox {
-    margin-right: 5px;
-}
+ /* Mostrar el menú desplegable al pasar el ratón sobre él */
+ .dropdown:hover .dropdown-content {
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+ }
 
-/* Estilos para tareas completadas */
-.task-done {
-    text-decoration: line-through;
-    color: #555;
-    opacity: 0.7;
-    /* Opacidad para indicar tarea completada */
-}
+ /* Agrega estilos para checkboxes de lista de tareas */
+ .task-checkbox {
+     margin-right: 5px;
+ }
 
-
-/*Corregir el error de la nota creada*/
-
-/* Agrega estilos para subrayar las palabras incorrectas */
-.note .spell-error {
-    border-bottom: 2px solid red;
-    position: relative;
-    display: inline-block;
-}
-
-/* Estilos para el desplegable de sugerencias */
-#sugerenciasDiv {
-    display: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 5px;
-    position: absolute;
-    z-index: 1000;
-}
+ /* Estilos para tareas completadas */
+ .task-done {
+     text-decoration: line-through;
+     color: #555;
+     opacity: 0.7;
+     /* Opacidad para indicar tarea completada */
+ }
 
 
-#note-content-div[contenteditable="true"] {
-    font-family: 'Arial';
-    font-size: 12px;
-    line-height: 1;
-}
+ /*Corregir el error de la nota creada*/
 
-.crear {
-    border-radius: 5px;
-    border: black 1px solid; 
-}
+ /* Agrega estilos para subrayar las palabras incorrectas */
+ .note .spell-error {
+     border-bottom: 2px solid red;
+     position: relative;
+     display: inline-block;
+ }
 
-/* Add styles for the dark mode toggle */
-#dark-mode-toggle {
-    position: absolute;
-    top: 10px;
-    right: 1px;
-    padding: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    /* Add animation transition */
-}
+ /* Estilos para el desplegable de sugerencias */
+ #sugerenciasDiv {
+     display: none;
+     background-color: #fff;
+     border: 1px solid #ccc;
+     padding: 5px;
+     position: absolute;
+     z-index: 1000;
+ }
 
-/* Add styles for the dark mode icon */
-#dark-mode-toggle i {
-    font-size: 27px;
-}
 
-/* Add styles for dark mode */
-body.dark-mode {
-    background-color: #222;
-    color: #fff;
-}
+ #note-content-div[contenteditable="true"] {
+     font-family: 'Arial';
+     font-size: 12px;
+     line-height: 1;
+ }
 
-body.dark-mode .note {
-    background-color: #222;
-    color: #fff;
-}
+ .crear {
+     border-radius: 5px;
+     border: black 1px solid;
+ }
+
+ /* Add styles for the dark mode toggle */
+ #dark-mode-toggle {
+     position: absolute;
+     top: 10px;
+     right: 1px;
+     padding: 20px;
+     cursor: pointer;
+     transition: transform 0.3s ease;
+     /* Add animation transition */
+ }
+
+ /* Add styles for the dark mode icon */
+ #dark-mode-toggle i {
+     font-size: 27px;
+ }
+
+ /* Add styles for dark mode */
+ body.dark-mode {
+     background-color: #222;
+     color: #fff;
+ }
+
+ body.dark-mode .note {
+     background-color: #222;
+     color: #fff;
+ }
