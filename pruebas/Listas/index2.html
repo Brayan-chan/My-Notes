@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <title>Mis notas</title>
+</head>
+
+<body>
+    <div class="iconos">
+        <button class="book"><i style="font-size: 25px;" class="fa-solid fa-book-bookmark"></i></button>
+        <button class="check"><i style="font-size: 25px;" class="fa-regular fa-square-check"></i></button>
+        <button class="tuerca"><i style="font-size: 25px;" class="fa-solid fa-gear"></i></button>
+    </div>
+
+    <div class="folders">
+        <nav class="carpetas">
+            <button id="todo">Todo</button>
+            <button id="contrasenas">Contraseñas</button>
+            <button id="escuela">Escuela</button>
+            <button id="extractos">Extractos</button>
+            <button id="ideas">Ideas</button>
+            <button id="ideas_programacion">Ideas de programación</button>
+            <button id="isc">ISC</button>
+            <button id="sin_categoria">Sin categoría</button>
+            <button id="tareas">Tareas</button>
+            <button id="trabajo">Trabajo</button>
+            <button id="vacaciones">Vacaciones</button>
+            <button id="videojuegos">Videojuegos</button>
+            <button id="viajes">Viajes</button>
+
+            <button><i style="color: rgb(252, 169, 14); background-color: transparent;"
+                    class="fas fa-folder"></i></button>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="title">
+            <h3>Nota 1
+                <button style="border: none;" class="edit"><i class="fas fa-pencil-alt"></i></button>
+                <button style="border: none;" class="delete"><i class="fas fa-trash-alt"></i></button>
+            </h3>
+        </div>
+        <div class="content">
+            <p>Una breve descripción del contenido de la nota y a un lado se debe de mostrar una imagen si es que en
+                este archivo
+                existe una imagen guardada. <br>Y si no es el caso pues no se muestra nada y simplemente se muestra el
+                titulo y la
+                descripción de la nota guardada.Contenido de la nota...</p>
+        </div>
+        <div class="image">
+            <img src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" alt="Imagen de la nota"
+                style="width:40%; border-radius: 10px;">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="title">
+            <h3>Nota 1
+                <button style="border: none;" class="edit"><i class="fas fa-pencil-alt"></i></button>
+                <button style="border: none;" class="delete"><i class="fas fa-trash-alt"></i></button>
+            </h3>
+        </div>
+        <div class="content">
+            <p>Una breve descripción del contenido de la nota y a un lado se debe de mostrar una imagen si es que en
+                este
+                archivo
+                existe una imagen guardada. <br>Y si no es el caso pues no se muestra nada y simplemente se muestra el
+                titulo y la
+                descripción de la nota guardada.Contenido de la nota...</p>
+        </div>
+        <div class="image">
+            <img src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" alt="Imagen de la nota"
+                style="width:40%; border-radius: 10px;">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="title">
+            <h3>Nota 1
+                <button style="border: none;" class="edit"><i class="fas fa-pencil-alt"></i></button>
+                <button style="border: none;" class="delete"><i class="fas fa-trash-alt"></i></button>
+            </h3>
+        </div>
+        <div class="content">
+            <p>Una breve descripción del contenido de la nota y a un lado se debe de mostrar una imagen si es que en
+                este
+                archivo
+                existe una imagen guardada. <br>Y si no es el caso pues no se muestra nada y simplemente se muestra el
+                titulo y la
+                descripción de la nota guardada.Contenido de la nota...</p>
+        </div>
+        <div class="image">
+            <img src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" alt="Imagen de la nota"
+                style="width:40%; border-radius: 10px;">
+        </div>
+    </div>
+
+    <style>
+        * {
+            background-color: rgb(231, 231, 231);
+            padding: 1px;
+            box-sizing: border-box;
+        }
+
+        .iconos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* Ajuste para alinear al inicio */
+            padding: 15px;
+        }
+
+        .book,
+        .check,
+        .tuerca {
+            border: none;
+            background-color: transparent;
+        }
+
+        .book i {
+            margin-left: 500px;
+            color: rgb(252, 169, 14);
+            cursor: pointer;
+        }
+
+        .check i {
+            margin-left: 160px;
+            cursor: pointer;
+        }
+
+        .tuerca {
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .carpetas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .carpetas button {
+            border: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+
+        .container {
+            border: 2px solid #ccc;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            border-radius: 10px;
+            grid-template-rows: auto;
+            padding: 15px;
+            margin-bottom: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .title {
+            grid-column: 1 / span 2;
+        }
+
+        .content {
+            grid-column: 1 / span 2;
+        }
+
+        .image {
+            padding: 10px;
+            grid-column: 3;
+            text-align: right;
+        }
+    </style>
+</body>
+
+</html>

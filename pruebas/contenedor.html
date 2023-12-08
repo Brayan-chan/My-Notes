@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            grid-template-rows: auto;
+            gap: px;
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;  
+            margin: 10px;  
+        }
+
+        .title {
+            grid-column: 1 / span 2;
+        }
+
+        .content {
+            grid-column: 1 / span 2;
+        }
+
+        .image {
+            
+            padding: 10px;
+            grid-column: 3 ;
+            text-align: right;
+            
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">
+            <h2>Nota 1</h2>
+        </div>
+        <div class="content">
+            <p>Contenido de la nota...</p>
+        </div>
+        <div class="image">
+            <img src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" alt="Imagen de la nota" style="width:40%; border-radius: 10px;">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="title">
+            <h2>Nota 2</h2>
+        </div>
+        <div class="content">
+            <p>Contenido de la nota...</p>
+        </div>
+        <div class="image">
+            <img src="ruta_de_tu_imagen.jpg" alt="Imagen de la nota" style="width:20%">
+        </div>
+    </div>
+
+</body>
+
+</html>

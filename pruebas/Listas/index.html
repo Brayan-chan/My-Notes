@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpetas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    
+        <div class="iconos">
+            <button onclick="location.href='index2.html'" class="regresar1"><i class="fa-solid fa-arrow-left"></i></button>
+            <p>Carpetas</p>
+            <button class="basurero1"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+
+        <div class="folders">
+            <button class="carpetas"><i style="background-color: transparent; color: rgb(252, 169, 14);" class="fas fa-check"></i>Todo</button>
+        </div>
+
+        <div class="nueva-carpeta">
+            <button class="new-folder">
+                <i style="background-color: transparent; color: rgb(252, 169, 14);" class="fas fa-folder-plus" style="display: block;"></i>
+                Nueva Carpeta
+            </button>
+        </div>
+ 
+
+    <style>
+        * {
+            background-color: rgb(231, 231, 231);
+            padding: 10;
+            box-sizing: border-box;
+        }
+
+        .regresar1,
+        .basurero1 {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .iconos {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .new-folder {
+            border-radius: 10px;
+            padding: 20px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .carpetas {
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 5px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .carpetas i {
+            margin-right: 5px;
+        }
+    </style>
+
+</body>
+
+</html>
