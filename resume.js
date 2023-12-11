@@ -10,13 +10,17 @@ function selectAllAndSummarize() {
 
   // Genera un resumen del contenido seleccionado
   const selectedText = selection.toString();
-  const summary = generateSummary(selectedText);
+  const summary = generateKeywordSummary(selectedText);
 
   // Muestra el contenedor de resumen y actualiza el texto
   const contentSummary = document.getElementById("content-summary");
+  contentSummary.style.display = "block"; // Mostrar el contenedor
+
   const summaryText = document.getElementById("summary-text");
   summaryText.textContent = summary;
-  contentSummary.style.display = "block";
+
+  // Inserta el contenedor de resumen al principio del note-content-div
+  noteContent.insertBefore(contentSummary, noteContent.firstChild);
 }
 
 function acceptSummary() {
@@ -37,7 +41,7 @@ function discardSummary() {
   contentSummary.style.display = "none";
 }
 
-function generateSummary(text) {
+function generateKeywordSummary(text) {
   // Divide el texto en oraciones
   const sentences = text.split(/[.!?]/);
 
@@ -46,8 +50,13 @@ function generateSummary(text) {
     (sentence) => sentence.trim() !== ""
   );
 
+  // Selecciona las oraciones que contienen palabras clave
+  const keywordSentences = nonEmptySentences.filter((sentence) =>
+    containsKeyword(sentence)
+  );
+
   // Selecciona un número fijo de oraciones para el resumen (puedes ajustar este número)
-  const summarySentences = nonEmptySentences.slice(0, 3); // Aquí se seleccionan las primeras 3 oraciones como ejemplo
+  const summarySentences = keywordSentences.slice(0, 3); // Aquí se seleccionan las primeras 3 oraciones como ejemplo
 
   // Une las oraciones seleccionadas para formar el resumen
   const summary = summarySentences.join(" ");
@@ -55,3 +64,39 @@ function generateSummary(text) {
   return summary;
 }
 
+function containsKeyword(sentence) {
+  // Lista de palabras clave
+  const keywords = [
+    "SON",
+    "SIGNIFICA",
+    "SE CONSIDERA",
+    "ES",
+    "UN",
+    "UNA",
+    "TAMBIÉN",
+    "CONOCIDA COMO",
+    "ES UNA",
+    "ES UN",
+    "PROPIEDADES",
+    "CARACTERÍSTICAS",
+    "ÚTIL",
+    "IMPORTANTE",
+    "SE REFIERE",
+    "REPRESENTA",
+    "REPRESENTAN",
+    "EN OTRAS PALABRAS",
+    "PERMITE",
+    "SU FUNCIÓN ES",
+    "ES UN TIPO",
+    "SON UN TIPO",
+    "SE USA",
+    "SE UTILIZA",
+    "ESTABLECE",
+    "INDICA",
+    "INDICAN",
+    "CONOCIDO COMO",
+  ];
+
+  // Comprueba si la oración contiene alguna palabra clave
+  return keywords.some((keyword) => sentence.toUpperCase().includes(keyword));
+}
