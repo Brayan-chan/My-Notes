@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas</title>
+    <title>Subpages</title>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -16,13 +16,59 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+
+
 </head>
+<!--
+<header>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+            <li><a href='http://127.0.0.1:5502/home.html'>Home</a></li>
+            <li><a class='dropdown-arrow' href='http://'>Products</a>
+                <ul class='sub-menus'>
+                    <li><a href='http://'>Products 1</a></li>
+                    <li><a href='http://'>Products 2</a></li>
+                    <li><a href='http://'>Products 3</a></li>
+                    <li><a href='http://'>Products 4</a></li>
+                </ul>
+            </li>
+            <li><a href='http://'>About</a></li>
+            <li><a class='dropdown-arrow' href='http://'>Services</a>
+                <ul class='sub-menus'>
+                    <li><a href='http://'>Services 1</a></li>
+                    <li><a href='http://'>Services 2</a></li>
+                    <li><a href='http://'>Services 3</a></li>
+                </ul>
+            </li>
+            <li><a href='http://'>Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+-->
 
 <body>
 
+
+    <!--
+    <button onclick="iraHome()">Home</button>
+    <script>
+        function iraHome() {
+        window.location = "../home.html";
+        }
+    </script>
+    -->
+
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
-        <button onclick="location.href='https://misnotas-bcc.netlify.app/' " style="border: none; background-color: transparent; font-size: 30px; cursor: pointer; padding: 10px;"><i class="fa-solid fa-arrow-left"></i></button><br><br><br>
+        <!--
+        <h1>My Notes</h1>
+        <h2>Editor de Notas</h2>
+        -->
+        <button onclick="location.href='https://misnotas-bcc.netlify.app/' "
+            style="border: none; background-color: transparent; font-size: 30px; cursor: pointer; padding: 10px;"><i
+                class="fa-solid fa-arrow-left"></i></button><br><br><br>
         <div id="dark-mode-toggle" onclick="toggleDarkMode()">
             <i id="dark-mode-icon" class="fa-solid fa-toggle-on"></i>
         </div>
@@ -31,16 +77,17 @@
         <input type="text" id="note-title" placeholder="Título">
         <br><br>
         <div id="font-family-div">
-        <label for="font-family" style="font-size: 18px;">Fuente:</label>
-        <select id="font-family" style="font-size: 16px; width: 25.5%; cursor: pointer; border-radius: 5px;" onchange="changeFont()">
-            <option value="Arial, sans-serif">Arial</option>
-            <option value="Verdana, sans-serif">Verdana</option>
-            <option value="Georgia, serif">Georgia</option>
-            <option value="'Times New Roman', serif">Times New Roman</option>
-            <option value="'Courier New', monospace">Courier New</option>
-            <option value="Impact, sans-serif">Impact</option>
-            <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
-        </select>
+            <label for="font-family" style="font-size: 18px;">Fuente:</label>
+            <select id="font-family" style="font-size: 16px; width: 25.5%; cursor: pointer; border-radius: 5px;"
+                onchange="changeFont()">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', serif">Times New Roman</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="Impact, sans-serif">Impact</option>
+                <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
+            </select>
         </div>
 
         <br><br>
@@ -94,6 +141,10 @@
                 </label>
                 <input type="file" id="image-upload" accept="image/*" style="display: none;">
                 <button onclick="selectImage()"><i class="fas fa-mouse-pointer"></i> Seleccionar</button>
+                <!--<button onclick="applyAlign('justifyCenter')">
+                    <i class="fas fa-align-center"></i> Centrar Imagen
+                </button>
+                -->
                 <button onclick="moveImage()">
                     <i class="fas fa-arrows-alt"></i> Mover
                 </button>
@@ -140,7 +191,9 @@
             </div>
 
             <button onclick="toggleTaskList()"><i class="fa-solid fa-list-check"></i> List</button>
-
+            <!--<button onclick="toggleNumberedList()">1- List</button>
+            <button onclick="toggleBulletList()">° List</button>
+            -->
             <button onclick="toggleDrawingMode()"><i class="fas fa-pencil"></i> Dibujar</button>
 
             <button onclick="toggleSpeechRecognition()">
@@ -153,20 +206,24 @@
 
             <button onclick="createSubpage()">Crear Subpágina</button>
 
+
             <!-- Agrega esta sección al cuerpo de tu documento -->
             <div id="sugerenciasDiv" class="suggestions-menu"></div>
 
         </div>
 
-        
+
         <br>
         <label for="note-content">Contenido:</label>
-        <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()" onfocus="handleFocus()" onblur="handleBlur()">
+        <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()"
+            onfocus="handleFocus()" onblur="handleBlur()">
             <!-- Dentro del note-content-div, agrega un contenedor para el resumen -->
             <div id="content-summary" contenteditable="false" style="display: none;">
                 <p id="summary-text"></p>
-                <button onclick="acceptSummary()"><i style="color: green; cursor: pointer;" class="fa-solid fa-check"></i></button>
-                <button onclick="discardSummary()"><i style="color: red; cursor: pointer;" class="fa-solid fa-xmark"></i></button>
+                <button onclick="acceptSummary()"><i style="color: green; cursor: pointer;"
+                        class="fa-solid fa-check"></i></button>
+                <button onclick="discardSummary()"><i style="color: red; cursor: pointer;"
+                        class="fa-solid fa-xmark"></i></button>
                 <br><br>
             </div>
             <!-- Aqui se agregará el contenido de la nota -->

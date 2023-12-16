@@ -1,11 +1,22 @@
-<!-- index.html -->
-<!DOCTYPE html>
+function openSubpage(subpageId, title, content) {
+  // Abre la ventana de la subpágina por su ID
+  const subpageWindow = window.open("", subpageId, "width=600,height=400");
+  if (!subpageWindow) {
+    alert(
+      "No se pudo abrir la subpágina. Asegúrate de desactivar el bloqueo de ventanas emergentes."
+    );
+    return;
+  }
+
+  // Contenido inicial de la subpágina con el mismo conjunto de funciones
+  const subpageContent = `
+  <!DOCTYPE html>
 <html lang="en" x-webkit-speech>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas</title>
+    <title>Subpaginas</title>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -171,7 +182,7 @@
             </div>
             <!-- Aqui se agregará el contenido de la nota -->
         </div><br>
-        <button class="crear" onclick="createNote()">Crear Nota</button>
+        <button class="crear" onclick="createNote()">Crear Subpagina</button>
     </div>
 
     <!-- Vista previa de la nota -->
@@ -199,4 +210,35 @@
 
 </body>
 
-</html>
+</html>  
+  `;
+
+  // Escribe el contenido en la nueva ventana
+  subpageWindow.document.write(subpageContent);
+
+  // Cierra el documento de la nueva ventana para que pueda ser modificado por el script principal
+  subpageWindow.document.close();
+}
+
+function createSubpage() {
+  // Genera un ID único para la subpágina
+  const subpageId = "subpage_" + Date.now();
+
+  // Abre una nueva ventana para la subpágina
+  openSubpage(subpageId, "Nueva Subpágina", "");
+
+  // Solicita al usuario que ingrese un nombre para el enlace
+  const linkName = prompt("Ingrese un nombre para el enlace:");
+
+  // Crea un nuevo elemento div para representar el enlace en la página principal
+  const noteContent = document.getElementById("note-content-div");
+  const linkDiv = document.createElement("div");
+  linkDiv.innerHTML = `<a href="javascript:void(0);" onclick="openSubpage('${subpageId}', '${
+    linkName || "Nueva Subpágina"
+  }', '')">${linkName || "Nueva Subpágina"}</a>`;
+
+  // Inserta el enlace en el contenido de la nota
+  noteContent.appendChild(linkDiv);
+}
+
+

@@ -68,9 +68,17 @@ function containsKeyword(sentence) {
   // Lista de palabras clave
   const keywords = [
     "SON",
+    "SE LOGRAN",
+    "SE REALIZAN",
+    "SE LOGRA",
     "SIGNIFICA",
     "SE CONSIDERA",
+    "ES IMPORTANTE",
+    "PROCESAN",
     "ES",
+    "LOS",
+    "LAS",
+    "LA",
     "UN",
     "UNA",
     "TAMBIÉN",
@@ -95,6 +103,20 @@ function containsKeyword(sentence) {
     "INDICA",
     "INDICAN",
     "CONOCIDO COMO",
+    "TAMBIÉN",
+    "SIRVE",
+    "SIRVEN",
+    "SIRVE COMO",
+    "SIRVEN COMO",
+    "SIRVE PARA",
+    "SIRVEN PARA",
+    "FUNCIONA",
+    "FUNCIONAN",
+    "FUNCIONA COMO",
+    "UTLIZA",
+    "BASADA EN",
+    "BASADO EN",
+    "OTRA DE LAS CARACTERÍSTICAS",
   ];
 
   // Comprueba si la oración contiene alguna palabra clave
