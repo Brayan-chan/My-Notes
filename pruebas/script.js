@@ -144,6 +144,14 @@ saveImg.addEventListener("click", () => {
   link.click(); // clicking link to download image
 });
 
+canvas.addEventListener("touchstart", (e) => {
+  startDraw(e.touches[0]); // Utiliza el primer toque
+});
+canvas.addEventListener("touchmove", (e) => {
+  drawing(e.touches[0]); // Utiliza el primer toque
+});
+canvas.addEventListener("touchend", () => (isDrawing = false));
+
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", () => (isDrawing = false));
