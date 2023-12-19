@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="canvas.css">
 
+    <!-- Agrega esto en el head de tu HTML -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.rawgit.com/wy-ei/color-picker/v1.1.0/dist/tinycolorpicker.min.css">
+    
+    <!-- Agrega esto en el body, después de tu contenido principal -->
+    <script src="https://cdn.rawgit.com/wy-ei/color-picker/v1.1.0/dist/tinycolorpicker.min.js"></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 </head>
@@ -155,7 +163,8 @@
 
             <button onclick="location.href='https://drawproject-bcc.netlify.app/'"><i class="fas fa-pencil-ruler"></i> Dibujos</button>
 
-            <!-- Agrega esta sección al cuerpo de tu documento -->
+            <button onclick="highlightText()"><i class="fas fa-highlighter"></i> Resaltar</button>
+
             <div id="sugerenciasDiv" class="suggestions-menu"></div>
 
         </div>
@@ -198,6 +207,7 @@
     <script src="full_screen.js"></script>
     <script src="resume.js"></script>
     <script src="subpage.js"></script>
+    <script src="subrayar.js"></script>
 
 </body>
 
