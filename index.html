@@ -123,7 +123,7 @@
             </button>
 
             <!-- Nuevo botón para ingresar ecuación matemática -->
-            <button onclick="insertEquation()"><i class="fas fa-calculator"></i> Ecuación</button>
+            <button onclick="insertEquation()"><i class="fa-solid fa-square-root-variable"></i> Ecuación</button>
 
             <div class="dropdown">
                 <button class="dropdown-btn">Simbols ▼</button>
@@ -169,13 +169,27 @@
 
             <button onclick="insertVideoFromGallery()"><i class="fas fa-video"></i> Cargar</button>
 
+            <button onclick="rotatePage()"><i class="fas fa-rotate"></i> Rotar</button>
+
+            <button onclick="toggleTextBoxDrawingMode()">
+                <i class="fa-solid fa-i-cursor"></i> Text
+            </button>
+
+            <!--DARLE ESTILO DEL CONTENEDOR DEL AUDIO TIPO RECORDING VOICE-->
+            <button onclick="uploadAudio()"><i class="fa-solid fa-music"></i> Upload
+            </button>
+
             <div id="sugerenciasDiv" class="suggestions-menu"></div>
 
         </div>
 
-        
+        <!--Ajustar el note-content-div con formato A4 tipo Word-->
+        <!--Dar formato a las paginas para poder manipular su tamano -->
+        <!--Ajustar el tamaño de los botones con un solo contenedor de botones -->
+        <!---->
+
         <br>
-        <label for="note-content">Contenido:</label>
+        <label for="note-content"><!--Contenido:--></label>
         <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()" onfocus="handleFocus()" onblur="handleBlur()">
             <!-- Dentro del note-content-div, agrega un contenedor para el resumen -->
             <div id="content-summary" contenteditable="false" style="display: none;">
@@ -213,6 +227,18 @@
     <script src="subpage.js"></script>
     <script src="subrayar.js"></script>
     <script src="insertarVideos.js"></script>
+
+    <!-- ESCRIPT NO COMPLETO PARA DAR FORMATO A LA PÁGINA EN A4
+        Hay que corregir la logica para completar los renglones por ejemplo 
+        hacer un contador de renglones para que al completar estos renglones 
+        y des ENTER este cree otra hoja con los mismos estilos y formato del
+        primer contenido editable
+    <script src="hojaDefault.js"></script>
+    
+    <script src="cuadroTexto.js"></script>
+    -->
+
+    <script src="uploadAudio.js"></script>
 
 </body>
 
