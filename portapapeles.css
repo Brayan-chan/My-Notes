@@ -1,0 +1,38 @@
+#clipboard-container {
+    position: absolute;
+    top: 50px;
+    /* Ajusta la posición vertical según tus necesidades */
+    right: 10px;
+    /* Ajusta la posición horizontal según tus necesidades */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 999;
+}
+
+#clipboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+#clipboard-list {
+    max-height: 200px;
+    /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;
+}
+
+#clipboard-list div {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.clipboard-buttons {
+    background-color: transparent;
+    border: none;
+    justify-content: right;
+    flex-direction: end;
+    cursor: pointer;
+}
