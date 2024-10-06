@@ -425,3 +425,12 @@ body.dark-mode .note {
     background-color: #222;
     color: #fff;
 }
+
+.dark-mode button, select#font-family {
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    &:hover {
+        background-color: #eee;
+    }
+}
