@@ -1,341 +1,350 @@
- .note {
-     border: 2px solid #ccc;
-     padding: 10px;
-     margin-top: 10px;
-     min-height: 100px;
-     background-color: #f9f9f9;
- }
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
- /* Estilos CSS para el formateo de texto */
- .bold {
-     font-weight: bold;
- }
+.note {
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    min-height: 100px;
+    background-color: #f9f9f9;
+}
 
- .italic {
-     font-style: italic;
- }
+/* Estilos CSS para el formateo de texto */
+.bold {
+    font-weight: bold;
+}
 
- ul,
- ol {
-     margin-left: 20px;
- }
+.italic {
+    font-style: italic;
+}
 
- #note-content-div {
-     border: 2px solid #ccc;
-     padding: 10px;
-     min-height: 100px;
- }
+ul,
+ol {
+    margin-left: 20px;
+}
 
- .Todos-botones {
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
+.titulo {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
 
- .button-container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
+#note-content-div {
+    border: 2px solid #ccc;
+    padding: 10px;
+    min-height: 100px;
+}
 
- .Todos-botones button,
- .button-container button {
-     margin-right: 5px;
- }
+.Todos-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
- img {
-     position: relative;
- }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
- /* Estilo de las manijas de redimensionamiento */
- .resizable {
-     position: relative;
-     cursor: move;
- }
+.Todos-botones button,
+.button-container button {
+    margin-right: 5px;
+}
 
- .resizable::before,
- .resizable::after {
-     content: "";
-     position: absolute;
-     width: 8px;
-     height: 8px;
-     background-color: blue;
- }
+img {
+    position: relative;
+}
 
- .resizable::before {
-     top: -4px;
-     left: -4px;
-     cursor: nwse-resize;
-     /* Manija superior izquierda */
- }
+/* Estilo de las manijas de redimensionamiento */
+.resizable {
+    position: relative;
+    cursor: move;
+}
 
- .resizable::after {
-     bottom: -4px;
-     right: -4px;
-     cursor: nwse-resize;
-     /* Manija inferior derecha */
- }
+.resizable::before,
+.resizable::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: blue;
+}
 
- /* Estilos para los puntos de manipulación */
- .resize-handles {
-     position: absolute;
-     width: 100%;
-     height: 100%;
-     pointer-events: none;
-     display: none;
- }
+.resizable::before {
+    top: -4px;
+    left: -4px;
+    cursor: nwse-resize;
+    /* Manija superior izquierda */
+}
 
- .resize-handle {
-     width: 10px;
-     height: 10px;
-     background-color: #007bff;
-     position: absolute;
-     cursor: pointer;
-     pointer-events: auto;
- }
+.resizable::after {
+    bottom: -4px;
+    right: -4px;
+    cursor: nwse-resize;
+    /* Manija inferior derecha */
+}
 
- /* Estilos para pantallas grandes (por ejemplo, escritorios) */
- /* Define los estilos para pantallas grandes aquí */
+/* Estilos para los puntos de manipulación */
+.resize-handles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+}
 
- @media (max-width: 768px) {
-     /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+}
 
-     .resizable-container {
-         position: relative;
-     }
+/* Estilos para pantallas grandes (por ejemplo, escritorios) */
+/* Define los estilos para pantallas grandes aquí */
 
-     .resizable-image {
-         width: 100%;
-         height: auto;
-         cursor: move;
-     }
+@media (max-width: 768px) {
+    /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
 
-     .resize-handle {
-         position: absolute;
-         width: 20px;
-         height: 20px;
-         background-color: rgba(0, 0, 0, 0.5);
-     }
+    .resizable-container {
+        position: relative;
+    }
 
-     .resize-handle-nw {
-         top: 0;
-         left: 0;
-         cursor: nwse-resize;
-     }
+    .resizable-image {
+        width: 100%;
+        height: auto;
+        cursor: move;
+    }
 
-     .resize-handle-ne {
-         top: 0;
-         right: 0;
-         cursor: nesw-resize;
-     }
+    .resize-handle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 
-     .resize-handle-sw {
-         bottom: 0;
-         left: 0;
-         cursor: nesw-resize;
-     }
+    .resize-handle-nw {
+        top: 0;
+        left: 0;
+        cursor: nwse-resize;
+    }
 
-     .resize-handle-se {
-         bottom: 0;
-         right: 0;
-         cursor: nwse-resize;
-     }
- }
+    .resize-handle-ne {
+        top: 0;
+        right: 0;
+        cursor: nesw-resize;
+    }
 
- /* Estilos para la tabla */
- table {
-     border-collapse: collapse;
-     width: 100%;
- }
+    .resize-handle-sw {
+        bottom: 0;
+        left: 0;
+        cursor: nesw-resize;
+    }
 
- table,
- th,
- td {
-     border: 1px solid #000;
- }
+    .resize-handle-se {
+        bottom: 0;
+        right: 0;
+        cursor: nwse-resize;
+    }
+}
 
- th,
- td {
-     padding: 8px;
-     text-align: left;
- }
+/* Estilos para la tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
- /* Estilos para las celdas editables dentro de la tabla */
- table div[contenteditable="true"] {
-     outline: none;
-     min-height: 20px;
-     /* Ajusta el tamaño mínimo de las celdas */
- }
+table,
+th,
+td {
+    border: 1px solid #000;
+}
 
- /* Estilos adicionales para el contenido div */
- #note-content-div {
-     min-height: 100px;
-     /* Establece un mínimo para el área de contenido */
- }
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
 
- /* Estilos adicionales para la tabla */
+/* Estilos para las celdas editables dentro de la tabla */
+table div[contenteditable="true"] {
+    outline: none;
+    min-height: 20px;
+    /* Ajusta el tamaño mínimo de las celdas */
+}
 
- .editable-table {
-     border-collapse: collapse;
- }
+/* Estilos adicionales para el contenido div */
+#note-content-div {
+    min-height: 100px;
+    /* Establece un mínimo para el área de contenido */
+}
 
- .editable-cell {
-     min-width: 50px;
-     /* Ajusta según sea necesario */
-     min-height: 20px;
-     /* Ajusta según sea necesario */
- }
+/* Estilos adicionales para la tabla */
 
- /* Agrega estilos para resaltar la sintaxis del código */
- pre {
-     background-color: #f4f4f4;
-     padding: 10px;
-     border-radius: 5px;
-     overflow-x: auto;
- }
+.editable-table {
+    border-collapse: collapse;
+}
 
- /* Establece el estilo del texto dentro del elemento pre */
- pre code {
-     font-family: "Courier New", Courier, monospace;
- }
+.editable-cell {
+    min-width: 50px;
+    /* Ajusta según sea necesario */
+    min-height: 20px;
+    /* Ajusta según sea necesario */
+}
 
- .math-equation,
- .special-character {
-     font-style: italic;
-     font-size: 1.2em;
- }
+/* Agrega estilos para resaltar la sintaxis del código */
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
 
- .special-character {
-     color: black;
- }
+/* Establece el estilo del texto dentro del elemento pre */
+pre code {
+    font-family: "Courier New", Courier, monospace;
+}
 
- /* Estilos para superíndices y subíndices */
- sup,
- sub {
-     font-size: 0.8em;
-     line-height: 1;
-     vertical-align: baseline;
-     position: relative;
- }
+.math-equation,
+.special-character {
+    font-style: italic;
+    font-size: 1.2em;
+}
 
- sup {
-     top: -0.5em;
- }
+.special-character {
+    color: black;
+}
 
- sub {
-     bottom: -0.25em;
- }
+/* Estilos para superíndices y subíndices */
+sup,
+sub {
+    font-size: 0.8em;
+    line-height: 1;
+    vertical-align: baseline;
+    position: relative;
+}
 
- /* Estilo del botón del menú */
- .dropdown-btn {
+sup {
+    top: -0.5em;
+}
 
-     padding: 1px;
-     font-size: 14px;
-     cursor: pointer;
- }
+sub {
+    bottom: -0.25em;
+}
 
- /* Contenedor del menú desplegable */
- .dropdown {
-     display: inline-block;
-     position: relative;
- }
+/* Estilo del botón del menú */
+.dropdown-btn {
 
- /* Estilo de los botones dentro del menú desplegable */
- .dropdown-content {
-     display: none;
-     position: absolute;
-     background-color: #f9f9f9;
-     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-     z-index: 1;
-     padding: 10px;
-     border-radius: 5px;
- }
+    padding: 1px;
+    font-size: 14px;
+    cursor: pointer;
+}
 
- /* Estilo de los botones dentro del menú desplegable */
- .dropdown-content button {
-     width: 25%;
-     background-color: transparent;
-     padding: 10px;
-     text-align: center;
-     border: none;
-     cursor: pointer;
-     margin: 5px;
- }
+/* Contenedor del menú desplegable */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
 
- /* Mostrar el menú desplegable al pasar el ratón sobre él */
- .dropdown:hover .dropdown-content {
-     display: grid;
-     grid-template-columns: repeat(5, 1fr);
- }
+/* Estilo de los botones dentro del menú desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
 
- /* Agrega estilos para checkboxes de lista de tareas */
- .task-checkbox {
-     margin-right: 5px;
- }
+/* Estilo de los botones dentro del menú desplegable */
+.dropdown-content button {
+    width: 25%;
+    background-color: transparent;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
 
- /* Estilos para tareas completadas */
- .task-done {
-     text-decoration: line-through;
-     color: #555;
-     opacity: 0.7;
-     /* Opacidad para indicar tarea completada */
- }
+/* Mostrar el menú desplegable al pasar el ratón sobre él */
+.dropdown:hover .dropdown-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
 
+/* Agrega estilos para checkboxes de lista de tareas */
+.task-checkbox {
+    margin-right: 5px;
+}
 
- /*Corregir el error de la nota creada*/
-
- /* Agrega estilos para subrayar las palabras incorrectas */
- .note .spell-error {
-     border-bottom: 2px solid red;
-     position: relative;
-     display: inline-block;
- }
-
- /* Estilos para el desplegable de sugerencias */
- #sugerenciasDiv {
-     display: none;
-     background-color: #fff;
-     border: 1px solid #ccc;
-     padding: 5px;
-     position: absolute;
-     z-index: 1000;
- }
+/* Estilos para tareas completadas */
+.task-done {
+    text-decoration: line-through;
+    color: #555;
+    opacity: 0.7;
+    /* Opacidad para indicar tarea completada */
+}
 
 
- #note-content-div[contenteditable="true"] {
-     font-family: 'Arial';
-     font-size: 12px;
-     line-height: 1;
- }
+/*Corregir el error de la nota creada*/
 
- .crear {
-     border-radius: 5px;
-     border: black 1px solid;
- }
+/* Agrega estilos para subrayar las palabras incorrectas */
+.note .spell-error {
+    border-bottom: 2px solid red;
+    position: relative;
+    display: inline-block;
+}
 
- /* Add styles for the dark mode toggle */
- #dark-mode-toggle {
-     position: absolute;
-     top: 10px;
-     right: 1px;
-     padding: 20px;
-     cursor: pointer;
-     transition: transform 0.3s ease;
-     /* Add animation transition */
- }
+/* Estilos para el desplegable de sugerencias */
+#sugerenciasDiv {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    position: absolute;
+    z-index: 1000;
+}
 
- /* Add styles for the dark mode icon */
- #dark-mode-toggle i {
-     font-size: 27px;
- }
 
- /* Add styles for dark mode */
- body.dark-mode {
-     background-color: #222;
-     color: #fff;
- }
+#note-content-div[contenteditable="true"] {
+    font-family: 'Arial';
+    font-size: 12px;
+    line-height: 1;
+}
 
- body.dark-mode .note {
-     background-color: #222;
-     color: #fff;
- }
+.crear {
+    border-radius: 5px;
+    border: black 1px solid;
+}
+
+/* Add styles for the dark mode toggle */
+#dark-mode-toggle {
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    /* Add animation transition */
+}
+
+/* Add styles for the dark mode icon */
+#dark-mode-toggle i {
+    font-size: 27px;
+}
+
+/* Add styles for dark mode */
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .note {
+    background-color: #222;
+    color: #fff;
+}
