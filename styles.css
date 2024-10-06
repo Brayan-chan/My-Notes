@@ -63,7 +63,6 @@ select#font-family {
 
     & option {
         color: #939393;
-
     }
 
     & #font-family:focus {
@@ -76,6 +75,42 @@ select#font-family {
     border: 2px solid #ccc;
     padding: 10px;
     min-height: 100px;
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    gap: 5px;
+
+    &:hover {
+        background-color: #e5e5e5;
+        transform: scale(0.95);
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+.dropdown {
+    & button {
+        background-color: transparent;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+    & button:hover {
+        background-color: #e5e5e5;
+        transform: scale(0.95);
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+button.crear {
+    border: 1px solid #ccc;
 }
 
 .Todos-botones {
@@ -147,7 +182,6 @@ img {
 }
 
 /* Estilos para pantallas grandes (por ejemplo, escritorios) */
-/* Define los estilos para pantallas grandes aquí */
 
 @media (max-width: 768px) {
     /* Estos estilos se aplicarán solo en pantallas con un ancho máximo de 768px (pantallas móviles) */
