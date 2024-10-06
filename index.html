@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en" x-webkit-speech>
 
@@ -6,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas</title>
-
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,42 +12,36 @@
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="canvas.css">
     <link rel="stylesheet" href="portapapeles.css">
-
-    <!-- Agrega esto en el head de tu HTML -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.rawgit.com/wy-ei/color-picker/v1.1.0/dist/tinycolorpicker.min.css">
-    
-    <!-- Agrega esto en el body, después de tu contenido principal -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <link href="https://cdn.rawgit.com/wy-ei/color-picker/v1.1.0/dist/tinycolorpicker.min.css">
     <script src="https://cdn.rawgit.com/wy-ei/color-picker/v1.1.0/dist/tinycolorpicker.min.js"></script>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 </head>
 
 <body>
-
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
-        <button onclick="location.href='https://misnotas-bcc.netlify.app/' " style="border: none; background-color: transparent; font-size: 30px; cursor: pointer; padding: 10px;"><i class="fa-solid fa-arrow-left"></i></button><br><br><br>
         <div id="dark-mode-toggle" onclick="toggleDarkMode()">
             <i id="dark-mode-icon" class="fa-solid fa-toggle-on"></i>
         </div>
 
-        <label for="note-title">Título:</label>
-        <input type="text" id="note-title" placeholder="Título">
-        <br><br>
+        <div class="titulo">
+            <label for="note-title">Título:</label>
+            <input type="text" id="note-title" placeholder="Título">
+        </div>
+
         <div id="font-family-div">
-        <label for="font-family" style="font-size: 18px;">Fuente:</label>
-        <select id="font-family" style="font-size: 16px; width: 25.5%; cursor: pointer; border-radius: 5px;" onchange="changeFont()">
-            <option value="Arial, sans-serif">Arial</option>
-            <option value="Verdana, sans-serif">Verdana</option>
-            <option value="Georgia, serif">Georgia</option>
-            <option value="'Times New Roman', serif">Times New Roman</option>
-            <option value="'Courier New', monospace">Courier New</option>
-            <option value="Impact, sans-serif">Impact</option>
-            <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
-        </select>
+            <label for="font-family" style="font-size: 18px;">Fuente:</label>
+            <select id="font-family" style="font-size: 16px; width: 25.5%; cursor: pointer; border-radius: 5px;"
+                onchange="changeFont()">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', serif">Times New Roman</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="Impact, sans-serif">Impact</option>
+                <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
+            </select>
         </div>
 
         <br><br>
@@ -162,7 +154,8 @@
 
             <button onclick="createSubpage()">Crear Subpágina</button>
 
-            <button onclick="location.href='https://drawproject-bcc.netlify.app/'"><i class="fas fa-pencil-ruler"></i> Dibujos</button>
+            <button onclick="location.href='https://drawproject-bcc.netlify.app/'"><i class="fas fa-pencil-ruler"></i>
+                Dibujos</button>
 
             <button onclick="highlightText()"><i class="fas fa-highlighter"></i> Resaltar</button>
 
@@ -195,12 +188,15 @@
 
         <br>
         <label for="note-content"><!--Contenido:--></label>
-        <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()" onfocus="handleFocus()" onblur="handleBlur()">
+        <div id="note-content-div" contenteditable="true" oninput="updatePreview()" oninput="handleInput()"
+            onfocus="handleFocus()" onblur="handleBlur()">
             <!-- Dentro del note-content-div, agrega un contenedor para el resumen -->
             <div id="content-summary" contenteditable="false" style="display: none;">
                 <p id="summary-text"></p>
-                <button onclick="acceptSummary()"><i style="color: green; cursor: pointer;" class="fa-solid fa-check"></i></button>
-                <button onclick="discardSummary()"><i style="color: red; cursor: pointer;" class="fa-solid fa-xmark"></i></button>
+                <button onclick="acceptSummary()"><i style="color: green; cursor: pointer;"
+                        class="fa-solid fa-check"></i></button>
+                <button onclick="discardSummary()"><i style="color: red; cursor: pointer;"
+                        class="fa-solid fa-xmark"></i></button>
                 <br><br>
             </div>
             <!-- Aqui se agregará el contenido de la nota -->
