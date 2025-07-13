@@ -3,7 +3,15 @@
 function changeFont() {
   const fontFamilySelect = document.getElementById("font-family");
   const selectedFont = fontFamilySelect.value;
-  document.execCommand("fontName", false, selectedFont);
+  const noteContentDiv = document.getElementById("note-content-div");
+  
+  // Aplicar la fuente al contenedor completo
+  noteContentDiv.style.fontFamily = selectedFont;
+  
+  // También aplicar a cualquier texto que esté seleccionado
+  if (window.getSelection().toString()) {
+    document.execCommand("fontName", false, selectedFont);
+  }
 }
 
 function applyFontFamily() {
@@ -528,32 +536,28 @@ function toggleDarkMode() {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const darkModeIcon = document.getElementById("dark-mode-icon");
 
+  // Toggle el modo oscuro
   body.classList.toggle("dark-mode");
   darkModeToggle.classList.add("animate-toggle");
 
-  // Toggle between "fa-toggle-on" and "fa-toggle-off"
-  darkModeIcon.classList.toggle("fa-toggle-on");
-  darkModeIcon.classList.toggle("fa-toggle-off");
+  // Determinar el estado actual después del toggle
+  const isDarkMode = body.classList.contains("dark-mode");
 
-  // Remove animation class after the animation completes
+  // Actualizar el icono basado en el estado actual
+  if (isDarkMode) {
+    darkModeIcon.classList.remove("fa-toggle-off");
+    darkModeIcon.classList.add("fa-toggle-on");
+  } else {
+    darkModeIcon.classList.remove("fa-toggle-on");
+    darkModeIcon.classList.add("fa-toggle-off");
+  }
+
+  // Guardar el estado en localStorage
+  localStorage.setItem("darkMode", isDarkMode.toString());
+  console.log("Dark mode toggled. New state:", isDarkMode);
+
+  // Remover la animación después de completarse
   setTimeout(() => {
     darkModeToggle.classList.remove("animate-toggle");
-  }, 300); // 300ms, should match the transition time in CSS
-
-  // Save dark mode preference to localStorage
-  localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+  }, 300);
 }
-
-// Call this function to set dark mode based on user preference
-function setInitialDarkMode() {
-  const savedDarkMode = localStorage.getItem("darkMode");
-  const body = document.body;
-  if (savedDarkMode === "true") {
-    body.classList.add("dark-mode");
-  } else {
-    body.classList.remove("dark-mode");
-  }
-}
-
-// Call setInitialDarkMode when the page loads
-window.onload = setInitialDarkMode;

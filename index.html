@@ -22,7 +22,7 @@
     <!-- Formulario para crear nuevas notas -->
     <div id="editor">
         <div id="dark-mode-toggle" onclick="toggleDarkMode()">
-            <i id="dark-mode-icon" class="fa-solid fa-toggle-on"></i>
+            <i id="dark-mode-icon" class="fa-solid fa-toggle-off"></i>
         </div>
         <div class="titulo">
             <input type="text" id="note-title" placeholder="Título">
@@ -214,6 +214,41 @@
     <script src="insertarVideos.js"></script>
     <script src="uploadAudio.js"></script>
     <script src="Portapapeles.js"></script>
+
+    <script>
+        // Función para aplicar el modo oscuro inmediatamente
+        function applyDarkModeImmediately() {
+            const savedDarkMode = localStorage.getItem("darkMode");
+            const body = document.body;
+            const darkModeIcon = document.getElementById("dark-mode-icon");
+            
+            console.log("Applying dark mode. Saved state:", savedDarkMode);
+            
+            if (savedDarkMode === "true") {
+                // Activar modo oscuro
+                if (body) body.classList.add("dark-mode");
+                if (darkModeIcon) {
+                    darkModeIcon.classList.remove("fa-toggle-off");
+                    darkModeIcon.classList.add("fa-toggle-on");
+                }
+                console.log("Dark mode activated from localStorage");
+            } else {
+                // Activar modo claro
+                if (body) body.classList.remove("dark-mode");
+                if (darkModeIcon) {
+                    darkModeIcon.classList.remove("fa-toggle-on");
+                    darkModeIcon.classList.add("fa-toggle-off");
+                }
+                console.log("Light mode activated");
+            }
+        }
+
+        // Ejecutar inmediatamente
+        applyDarkModeImmediately();
+
+        // También ejecutar cuando el DOM esté completamente listo (por si algunos elementos no estaban disponibles)
+        document.addEventListener('DOMContentLoaded', applyDarkModeImmediately);
+    </script>
 
 </body>
 
