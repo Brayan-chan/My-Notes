@@ -192,12 +192,34 @@
             </div>
             <!-- Aqui se agregará el contenido de la nota -->
         </div><br>
-        <button class="crear" onclick="createNote()">Crear Nota</button>
+        <div class="note-management-section">
+            <div class="note-management-buttons">
+                <button class="crear btn-primary" onclick="createNote()">
+                    <i class="fas fa-plus"></i> Crear Nota
+                </button>
+                <button class="btn-danger" onclick="clearAllNotes()">
+                    <i class="fas fa-trash-alt"></i> Limpiar Todo
+                </button>
+                <button class="btn-success" onclick="exportNotes()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+                <label for="import-notes" class="btn-info">
+                    <i class="fas fa-upload"></i> Importar
+                </label>
+                <input type="file" id="import-notes" accept=".json" style="display: none;" onchange="importNotes(event)">
+            </div>
+        </div>
     </div>
 
     <!-- Área para mostrar las notas existentes -->
     <div id="notes-container">
         <!-- Las notas se mostrarán aquí -->
+    </div>
+    
+    <!-- Contador de notas -->
+    <div id="notes-counter" class="notes-counter">
+        <i class="fas fa-sticky-note"></i>
+        <span id="notes-count">0</span> notas guardadas
     </div>
 
     <script src="script.js"></script>
@@ -243,11 +265,29 @@
             }
         }
 
+        // Función para cargar las notas desde localStorage
+        function initializeApp() {
+            // Aplicar modo oscuro
+            applyDarkModeImmediately();
+            
+            // Cargar notas guardadas
+            if (typeof loadNotesFromStorage === 'function') {
+                loadNotesFromStorage();
+            } else {
+                // Si la función aún no está disponible, esperamos un poco
+                setTimeout(() => {
+                    if (typeof loadNotesFromStorage === 'function') {
+                        loadNotesFromStorage();
+                    }
+                }, 100);
+            }
+        }
+
         // Ejecutar inmediatamente
-        applyDarkModeImmediately();
+        initializeApp();
 
         // También ejecutar cuando el DOM esté completamente listo (por si algunos elementos no estaban disponibles)
-        document.addEventListener('DOMContentLoaded', applyDarkModeImmediately);
+        document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 
 </body>
