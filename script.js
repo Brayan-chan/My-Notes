@@ -1,5 +1,159 @@
 // script.js
 
+// Funciones para manejo de localStorage de notas
+function saveNotesToStorage() {
+  const notesContainer = document.getElementById("notes-container");
+  const notes = [];
+  
+  // Recopilar todas las notas existentes
+  const noteElements = notesContainer.querySelectorAll(".note");
+  noteElements.forEach((noteElement, index) => {
+    const titleElement = noteElement.querySelector("h3");
+    const contentElement = noteElement.querySelector("div");
+    
+    if (titleElement && contentElement) {
+      notes.push({
+        id: index,
+        title: titleElement.textContent,
+        content: contentElement.innerHTML,
+        timestamp: Date.now()
+      });
+    }
+  });
+  
+  localStorage.setItem("myNotes", JSON.stringify(notes));
+  updateNotesCounter(notes.length);
+  console.log("Notes saved to localStorage:", notes.length, "notes");
+}
+
+function updateNotesCounter(count) {
+  const counterElement = document.getElementById("notes-count");
+  if (counterElement) {
+    counterElement.textContent = count || 0;
+  }
+}
+
+function loadNotesFromStorage() {
+  const savedNotes = localStorage.getItem("myNotes");
+  if (savedNotes) {
+    const notes = JSON.parse(savedNotes);
+    const notesContainer = document.getElementById("notes-container");
+    
+    // Limpiar contenedor antes de cargar
+    notesContainer.innerHTML = "";
+    
+    notes.forEach((note, index) => {
+      const noteElement = document.createElement("div");
+      noteElement.classList.add("note");
+      noteElement.setAttribute("data-note-id", index);
+      noteElement.innerHTML = `
+        <button style="float: right; color: red; background-color: transparent; border: none; cursor: pointer;" onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
+        <button style="float: right; color: green; background-color: transparent; border: none; cursor: pointer;" onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button class="print-button" style="float: right; color: black; background-color: transparent; border: none; cursor: pointer;" onclick="printNote(this)"><i class="fa-solid fa-print"></i></button>
+        <button style="float: right; color: blue; background-color: transparent; border: none; cursor: pointer;" onclick="copyNote(this)"><i class="fa-solid fa-copy"></i></button>
+        <h3>${note.title}</h3>
+        <div>${note.content}</div>
+      `;
+      notesContainer.appendChild(noteElement);
+    });
+    
+    updateNotesCounter(notes.length);
+    console.log("Notes loaded from localStorage:", notes.length, "notes");
+  } else {
+    updateNotesCounter(0);
+  }
+}
+
+function deleteNoteFromStorage(noteElement) {
+  const noteId = parseInt(noteElement.getAttribute("data-note-id"));
+  const savedNotes = localStorage.getItem("myNotes");
+  
+  if (savedNotes) {
+    let notes = JSON.parse(savedNotes);
+    // Filtrar la nota a eliminar
+    notes = notes.filter((_, index) => index !== noteId);
+    
+    // Reindexar las notas restantes
+    const notesContainer = document.getElementById("notes-container");
+    const remainingNotes = notesContainer.querySelectorAll(".note");
+    remainingNotes.forEach((element, index) => {
+      element.setAttribute("data-note-id", index);
+    });
+    
+    localStorage.setItem("myNotes", JSON.stringify(notes));
+    console.log("Note deleted from localStorage. Remaining notes:", notes.length);
+  }
+}
+
+function updateNoteInStorage(oldNoteElement, newTitle, newContent) {
+  const noteId = parseInt(oldNoteElement.getAttribute("data-note-id"));
+  const savedNotes = localStorage.getItem("myNotes");
+  
+  if (savedNotes) {
+    const notes = JSON.parse(savedNotes);
+    if (notes[noteId]) {
+      notes[noteId].title = newTitle;
+      notes[noteId].content = newContent;
+      notes[noteId].timestamp = Date.now();
+      
+      localStorage.setItem("myNotes", JSON.stringify(notes));
+      console.log("Note updated in localStorage:", noteId);
+    }
+  }
+}
+
+// Funciones auxiliares para gestión de notas
+function clearAllNotes() {
+  if (confirm("¿Estás seguro de que quieres eliminar todas las notas? Esta acción no se puede deshacer.")) {
+    localStorage.removeItem("myNotes");
+    const notesContainer = document.getElementById("notes-container");
+    notesContainer.innerHTML = "";
+    updateNotesCounter(0);
+    console.log("All notes cleared from localStorage and UI");
+  }
+}
+
+function exportNotes() {
+  const savedNotes = localStorage.getItem("myNotes");
+  if (savedNotes) {
+    const notes = JSON.parse(savedNotes);
+    const dataStr = JSON.stringify(notes, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = `my-notes-backup-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    console.log("Notes exported:", notes.length, "notes");
+  } else {
+    alert("No hay notas para exportar.");
+  }
+}
+
+function importNotes(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const importedNotes = JSON.parse(e.target.result);
+        if (Array.isArray(importedNotes)) {
+          localStorage.setItem("myNotes", JSON.stringify(importedNotes));
+          loadNotesFromStorage();
+          console.log("Notes imported:", importedNotes.length, "notes");
+          alert(`${importedNotes.length} notas importadas correctamente.`);
+        } else {
+          alert("El archivo no tiene el formato correcto.");
+        }
+      } catch (error) {
+        alert("Error al leer el archivo: " + error.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+}
+
 function changeFont() {
   const fontFamilySelect = document.getElementById("font-family");
   const selectedFont = fontFamilySelect.value;
@@ -207,8 +361,12 @@ function createNote() {
   const contentDiv = document.getElementById("note-content-div");
 
   if (title || contentDiv.innerHTML.trim() !== "") {
+    const notesContainer = document.getElementById("notes-container");
+    const currentNotesCount = notesContainer.querySelectorAll(".note").length;
+    
     const noteElement = document.createElement("div");
     noteElement.classList.add("note");
+    noteElement.setAttribute("data-note-id", currentNotesCount);
     noteElement.innerHTML = `
             <button style="float: right; color: red; background-color: transparent; border: none; cursor: pointer;" onclick="deleteNote(this)"><i class="fa-solid fa-trash-can"></i></button>
             <button style="float: right; color: green; background-color: transparent; border: none; cursor: pointer;" onclick="editNote(this)"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -219,8 +377,10 @@ function createNote() {
             <div>${contentDiv.innerHTML}</div>
         `;
 
-    const notesContainer = document.getElementById("notes-container");
     notesContainer.appendChild(noteElement);
+
+    // Guardar en localStorage después de crear la nota
+    saveNotesToStorage();
 
     document.getElementById("note-title").value = "";
     contentDiv.innerHTML = "";
@@ -234,16 +394,37 @@ function createNote() {
 
 function deleteNote(button) {
   const note = button.closest(".note");
+  
+  // Eliminar del localStorage antes de eliminar del DOM
+  deleteNoteFromStorage(note);
+  
+  // Eliminar del DOM
   note.remove();
+  
+  // Actualizar el localStorage con la nueva estructura
+  saveNotesToStorage();
 }
 
 function editNote(button) {
   const note = button.closest(".note");
   const title = note.querySelector("h3").textContent;
-  const content = note.querySelector("div").textContent;
+  const contentElement = note.querySelector("div");
+  const content = contentElement.innerHTML;
+  
+  // Llenar los campos del editor con el contenido de la nota
   document.getElementById("note-title").value = title;
   document.getElementById("note-content-div").innerHTML = content;
+  
+  // Guardar referencia a la nota que se está editando
+  const noteId = note.getAttribute("data-note-id");
+  document.getElementById("note-content-div").setAttribute("data-editing-note-id", noteId);
+  
+  // Eliminar la nota del DOM (se recreará al guardar)
+  deleteNoteFromStorage(note);
   note.remove();
+  
+  // Actualizar localStorage después de eliminar
+  saveNotesToStorage();
 }
 
 //FUNCIONES PRELIMINARES PARA CREAR NOTAS CON DIBUJOS PERO FALTA PONER LA LOGICA PARA QUE TAMBIEN DEJE INSERTAR LAS IMAGENES Y LAS TABLAS
