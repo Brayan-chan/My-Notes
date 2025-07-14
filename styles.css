@@ -506,3 +506,215 @@ body.dark-mode select#font-family option {
         min-width: 280px !important;
     }
 }
+
+/* Estilos para los botones de gestión de notas */
+.note-management-section {
+    margin: 15px 0;
+    padding: 0;
+}
+
+.note-management-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 auto;
+}
+
+.note-management-buttons button,
+.note-management-buttons label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: auto;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: inherit;
+}
+
+/* Estilos específicos para cada tipo de botón - más sutiles */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+
+.note-management-buttons button:hover,
+.note-management-buttons label:hover {
+    transform: scale(0.95);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover { 
+    background-color: #0056b3; 
+    border-color: #0056b3;
+}
+.btn-danger:hover { 
+    background-color: #c82333; 
+    border-color: #c82333;
+}
+.btn-success:hover { 
+    background-color: #218838; 
+    border-color: #218838;
+}
+.btn-info:hover { 
+    background-color: #138496; 
+    border-color: #138496;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .note-management-section {
+        padding: 10px 5px;
+        margin: 10px 0;
+    }
+    
+    .note-management-buttons {
+        gap: 6px;
+    }
+    
+    .note-management-buttons button,
+    .note-management-buttons label {
+        padding: 6px 10px;
+        font-size: 11px;
+        gap: 4px;
+    }
+    
+    .note-management-buttons i {
+        font-size: 12px;
+    }
+}
+
+/* Para pantallas muy pequeñas - apilar en dos filas */
+@media (max-width: 480px) {
+    .note-management-buttons {
+        gap: 5px;
+        max-width: 95%;
+    }
+    
+    .note-management-buttons button,
+    .note-management-buttons label {
+        padding: 5px 8px;
+        font-size: 10px;
+        flex: 1;
+        min-width: calc(50% - 3px);
+        max-width: calc(50% - 3px);
+    }
+    
+    .note-management-buttons i {
+        font-size: 11px;
+    }
+}
+
+/* Estilos específicos para modo oscuro en botones de gestión */
+body.dark-mode .note-management-buttons button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+}
+
+body.dark-mode .note-management-buttons button:hover {
+    background-color: #eee;
+}
+
+/* Mantener colores específicos para botones de acción en modo oscuro */
+body.dark-mode .btn-primary {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+body.dark-mode .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+body.dark-mode .btn-success {
+    background-color: #198754;
+    color: white;
+    border-color: #198754;
+}
+
+body.dark-mode .btn-info {
+    background-color: #0dcaf0;
+    color: #000;
+    border-color: #0dcaf0;
+}
+
+/* Estilos para el contador de notas */
+.notes-counter {
+    text-align: center;
+    margin: 20px 0;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 300px;
+    margin: 20px auto;
+    border: 1px solid #e9ecef;
+}
+
+.notes-counter i {
+    color: #007bff;
+    font-size: 16px;
+}
+
+/* Modo oscuro para el contador */
+body.dark-mode .notes-counter {
+    background-color: #343a40;
+    color: #adb5bd;
+    border-color: #495057;
+}
+
+body.dark-mode .notes-counter i {
+    color: #0d6efd;
+}
+
+/* Responsividad para el contador en móvil */
+@media (max-width: 768px) {
+    .notes-counter {
+        margin: 10px auto;
+        padding: 8px 12px;
+        font-size: 13px;
+        max-width: 220px;
+    }
+    
+    .notes-counter i {
+        font-size: 14px;
+    }
+}
