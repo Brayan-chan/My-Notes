@@ -444,6 +444,12 @@ body.dark-mode .note {
     }
 }
 
+.dark-mode #clipboard-container {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+}
+
 /* Input del título en modo oscuro - fondo claro para legibilidad */
 body.dark-mode .titulo input {
     background-color: #fff !important;
