@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Archivos específicos que queremos indexar
+Allow: /index.html
+Allow: /subpage.html
+Allow: /styles.css
+Allow: /script.js
+
+# Directorios que no queremos indexar
+Disallow: /pruebas/
+Disallow: /Docs/
+Disallow: /prims/
+
+# Mapa del sitio
+Sitemap: https://tu-dominio.com/sitemap.xml

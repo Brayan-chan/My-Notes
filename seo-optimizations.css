@@ -1,0 +1,85 @@
+/* Optimizaciones de rendimiento para SEO */
+
+/* Precargar fuentes críticas */
+@font-face {
+  font-family: 'Arial';
+  font-display: swap;
+  src: local('Arial');
+}
+
+/* Optimización de imágenes - estas propiedades van en HTML, no CSS */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Optimización para Core Web Vitals */
+* {
+  box-sizing: border-box;
+}
+
+/* Evitar layout shift */
+.notes-container {
+  min-height: 200px;
+}
+
+/* Optimización para móviles */
+@media (max-width: 768px) {
+  .button-container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .table-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Accesibilidad mejorada */
+:focus {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+[contenteditable]:focus {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+/* Skip links para accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #4A90E2;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
