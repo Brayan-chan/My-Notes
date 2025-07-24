@@ -1,4 +1,4 @@
-# My-Notes
+# My-Notes📝
 
 **My Notes** es un editor de texto web desarrollado como uno de mis primeros proyectos para aprender JavaScript desde cero. Fue creado con el objetivo de combinar funcionalidades de diferentes editores de texto pero adaptadas a mis propios gustos y necesidades.
 
